@@ -53,9 +53,9 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow">DESIGNER BY DAY · DEVELOPER IN PROGRESS</p>
           <h1>
-            귀여운 화면 뒤에는
+            궁금해서 파봤고,
             <br />
-            <span>단단한 기록</span>이 있습니다.
+            <span>까먹기 전에</span> 적어둡니다.
           </h1>
           <p className="hero-intro">
             팝콘이 배우고 만들고 실패한 모든 것을 기록합니다.
