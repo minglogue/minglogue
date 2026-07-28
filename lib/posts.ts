@@ -1,0 +1,84 @@
+export type PostKind = "coding" | "daily";
+
+export type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  category: string;
+  kind: PostKind;
+  readTime: string;
+  published: boolean;
+  content: string;
+};
+
+const markdownFiles = import.meta.glob("../content/**/*.md", {
+  eager: true,
+  import: "default",
+  query: "?raw",
+}) as Record<string, string>;
+
+function parseFrontmatter(raw: string) {
+  if (!raw.startsWith("---\n")) {
+    return { data: {} as Record<string, string>, content: raw };
+  }
+
+  const end = raw.indexOf("\n---\n", 4);
+  if (end === -1) {
+    return { data: {} as Record<string, string>, content: raw };
+  }
+
+  const data = Object.fromEntries(
+    raw
+      .slice(4, end)
+      .split("\n")
+      .map((line) => {
+        const separator = line.indexOf(":");
+        const key = line.slice(0, separator).trim();
+        const value = line
+          .slice(separator + 1)
+          .trim()
+          .replace(/^["']|["']$/g, "");
+        return [key, value];
+      })
+      .filter(([key]) => key),
+  );
+
+  return { data, content: raw.slice(end + 5).trimStart() };
+}
+
+function parsePost(path: string, raw: string): Post {
+  const { data, content } = parseFrontmatter(raw);
+  const slug = path.split("/").pop()?.replace(/\.md$/, "") ?? "";
+
+  return {
+    slug,
+    title: String(data.title ?? slug),
+    excerpt: String(data.excerpt ?? ""),
+    date: String(data.date ?? ""),
+    category: String(data.category ?? "NOTE"),
+    kind: data.kind === "daily" ? "daily" : "coding",
+    readTime: String(data.readTime ?? "3분"),
+    published: data.published !== "false",
+    content,
+  };
+}
+
+export function getAllPosts(kind?: PostKind) {
+  return Object.entries(markdownFiles)
+    .map(([path, raw]) => parsePost(path, raw))
+    .filter((post) => post.published && (!kind || post.kind === kind))
+    .sort((a, b) => b.date.localeCompare(a.date));
+}
+
+export function getPostBySlug(slug: string) {
+  return getAllPosts().find((post) => post.slug === slug);
+}
+
+export function formatPostDate(date: string) {
+  return new Intl.DateTimeFormat("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(new Date(`${date}T00:00:00`));
+}
