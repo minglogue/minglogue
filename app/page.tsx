@@ -36,9 +36,9 @@ export default function Home() {
   return (
     <main>
       <header className="site-header page-shell">
-        <a className="brand" href="#top" aria-label="PopcornLim's Logs 홈">
+        <a className="brand" href="#top" aria-label="PopcornKim's Logs 홈">
           <span className="brand-dot" aria-hidden="true" />
-          PopcornLim&apos;s Logs
+          PopcornKim&apos;s Logs
         </a>
         <nav className="main-nav" aria-label="주요 메뉴">
           <a href="#coding">Coding Logs</a>
@@ -145,7 +145,7 @@ export default function Home() {
 
       <footer className="site-footer page-shell">
         <div>
-          <strong>PopcornLim&apos;s Logs</strong>
+          <strong>PopcornKim&apos;s Logs</strong>
           <p>Designed, coded and continuously learned by 팝콘.</p>
         </div>
         <div className="footer-links">

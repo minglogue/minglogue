@@ -1,4 +1,4 @@
-# PopcornLim's Logs
+# PopcornKim's Logs
 
 디자이너 팝콘의 코딩 공부, 일상, 포트폴리오 그리고 반려햄스터
 푸딩이의 기록을 담는 개인 블로그입니다.

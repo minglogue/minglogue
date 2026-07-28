@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "PopcornLim's Logs",
-    template: "%s · PopcornLim's Logs",
+    default: "PopcornKim's Logs",
+    template: "%s · PopcornKim's Logs",
   },
   description:
     "디자이너 팝콘의 코딩 공부, 일상, 포트폴리오 그리고 반려햄스터 푸딩이의 기록.",
@@ -29,14 +29,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    siteName: "PopcornLim's Logs",
-    title: "PopcornLim's Logs",
+    siteName: "PopcornKim's Logs",
+    title: "PopcornKim's Logs",
     description: "귀여운 화면 뒤에는 단단한 기록이 있습니다.",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "PopcornLim's Logs" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "PopcornKim's Logs" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PopcornLim's Logs",
+    title: "PopcornKim's Logs",
     description: "귀여운 화면 뒤에는 단단한 기록이 있습니다.",
     images: ["/og.png"],
   },
