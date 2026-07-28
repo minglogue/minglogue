@@ -55,7 +55,7 @@ ${body}
   }
 
   return (
-    <div className="studio-grid">
+    <div className="studio-grid" id="new-post">
       <section className="studio-form" aria-label="Markdown 글 작성">
         <div className="studio-field">
           <label htmlFor="studio-title">제목</label>
@@ -141,4 +141,3 @@ ${body}
     </div>
   );
 }
-

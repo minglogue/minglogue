@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { StudioEditor } from "@/components/studio-editor";
+import { formatPostDate, getAllPosts } from "@/lib/posts";
 
 export const metadata: Metadata = {
   title: "Studio",
@@ -9,6 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default function StudioPage() {
+  const posts = getAllPosts();
+
   return (
     <main>
       <SiteHeader />
@@ -24,10 +27,38 @@ export default function StudioPage() {
         </p>
       </section>
       <section className="studio-content page-shell">
+        <div className="studio-post-manager">
+          <div className="archive-heading">
+            <h2>현재 공개된 글</h2>
+            <span>{posts.length}개의 Markdown 파일</span>
+          </div>
+          <div className="studio-post-list">
+            {posts.map((post) => (
+              <article key={post.slug}>
+                <div>
+                  <span>{post.kind === "coding" ? "코딩" : "일상"}</span>
+                  <h3>{post.title}</h3>
+                  <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+                </div>
+                <div className="studio-post-actions">
+                  <a href={`/posts/${post.slug}`} target="_blank" rel="noreferrer">
+                    글 보기
+                  </a>
+                  <a
+                    href={`https://github.com/popcorn-kim/popcorn-kim-log/edit/main/content/${post.kind}/${post.slug}.md`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    GitHub에서 수정 ↗
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
         <StudioEditor />
       </section>
       <SiteFooter />
     </main>
   );
 }
-

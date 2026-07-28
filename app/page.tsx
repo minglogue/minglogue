@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Arrow, SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { CredlyBadge } from "@/components/credly-badge";
 import { getAllPosts } from "@/lib/posts";
 
 function shortDate(date: string) {
@@ -98,8 +99,8 @@ export default function Home() {
           <section className="badge-section" id="badges">
             <p className="panel-label">CERTIFICATIONS</p>
             <h2>배운 것을 증명하는 배지</h2>
-            <p>자격증과 디지털 배지를 연결할 자리입니다.</p>
-            <span className="coming-label">BADGES COMING SOON</span>
+            <p>클라우드와 개발 공부의 결과를 하나씩 모읍니다.</p>
+            <CredlyBadge />
           </section>
           <section className="portfolio-section" id="portfolio">
             <p className="panel-label">SELECTED WORK</p>

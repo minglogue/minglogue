@@ -145,6 +145,16 @@ a { color: inherit; text-decoration: none; }
 .badge-section > p:not(.panel-label), .portfolio-section > p:not(.panel-label) { font-size: 14px; line-height: 1.55; }
 .coming-label, .portfolio-section a { display: inline-block; margin-top: 28px; font: 700 11px var(--font-mono), monospace; }
 .portfolio-section a { color: var(--yellow); }
+.credly-badge {
+  min-height: 270px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 22px;
+  padding: 12px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
 
 .site-footer {
   min-height: 150px; display: flex; align-items: center; justify-content: space-between; gap: 25px;
@@ -301,6 +311,31 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.7;
 }
 .studio-content { padding-top: 60px; padding-bottom: 90px; }
+.studio-post-manager { margin-bottom: 70px; }
+.studio-post-list article {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+.studio-post-list article > div:first-child > span {
+  display: inline-block;
+  margin-bottom: 7px;
+  color: var(--muted);
+  font: 700 10px var(--font-mono), monospace;
+}
+.studio-post-list h3 { margin: 0 0 8px; font-size: 19px; }
+.studio-post-list time { color: var(--muted); font: 11px var(--font-mono), monospace; }
+.studio-post-actions { display: flex; flex-shrink: 0; gap: 10px; }
+.studio-post-actions a {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  font-size: 11px;
+  font-weight: 800;
+}
+.studio-post-actions a:last-child { background: var(--yellow); }
 .studio-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(340px, .9fr); gap: 35px; }
 .studio-form { display: flex; flex-direction: column; gap: 22px; }
 .studio-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
@@ -403,6 +438,9 @@ a { color: inherit; text-decoration: none; }
   .markdown-body h2 { font-size: 24px; }
   .post-page-end { gap: 20px; }
   .studio-form-row { grid-template-columns: 1fr; }
+  .studio-post-list article { align-items: flex-start; flex-direction: column; }
+  .studio-post-actions { width: 100%; }
+  .studio-post-actions a { flex: 1; text-align: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
