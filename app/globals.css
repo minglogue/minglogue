@@ -6,6 +6,8 @@
   --yellow: #ffd62e;
   --muted: #68665d;
   --line: #24241f;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -14,7 +16,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-sans), Arial, sans-serif;
+  font-family: var(--font-sans);
 }
 a { color: inherit; text-decoration: none; }
 .page-shell { width: min(1440px, calc(100% - 80px)); margin: 0 auto; }
@@ -27,7 +29,7 @@ a { color: inherit; text-decoration: none; }
   gap: 30px;
   border-bottom: 2px solid var(--line);
 }
-.brand { display: flex; align-items: center; font: 800 26px/1 Georgia, serif; }
+.brand { display: flex; align-items: center; font: 800 26px/1 var(--font-sans); }
 .brand-dot {
   width: 17px; height: 17px; margin-right: 11px;
   border: 2px solid var(--ink); border-radius: 50%; background: var(--yellow);
@@ -53,7 +55,7 @@ a { color: inherit; text-decoration: none; }
 }
 .hero h1 {
   margin: 24px 0 28px;
-  font-family: Georgia, "Noto Serif KR", serif;
+  font-family: var(--font-sans);
   font-size: clamp(52px, 5.5vw, 84px);
   line-height: 1.08;
   letter-spacing: -.055em;
@@ -70,7 +72,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 10px 10px 0 var(--ink);
 }
 .issue-card p { margin: 0 0 20px; font: 700 12px var(--font-mono), monospace; letter-spacing: .07em; }
-.issue-card strong { display: block; margin-bottom: 15px; font: 800 62px/1 Georgia, serif; }
+.issue-card strong { display: block; margin-bottom: 15px; font: 800 62px/1 var(--font-sans); }
 .issue-card a { display: block; font-size: 18px; line-height: 1.45; font-weight: 700; }
 
 .content-grid {
@@ -95,7 +97,7 @@ a { color: inherit; text-decoration: none; }
 }
 .post-category, .post-row time, .post-read-time { font: 700 11px var(--font-mono), monospace; }
 .post-row time { text-align: right; }
-.post-row h3 { margin: 0 0 8px; font-family: Georgia, serif; font-size: 23px; line-height: 1.35; }
+.post-row h3 { margin: 0 0 8px; font-family: var(--font-sans); font-size: 23px; line-height: 1.35; }
 .post-row h3 a:hover { text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: 7px; text-underline-offset: -4px; }
 .post-row p { margin: 0; color: var(--muted); font-size: 14px; }
 .post-read-time { display: none; margin-top: 12px; color: var(--muted); }
@@ -123,13 +125,13 @@ a { color: inherit; text-decoration: none; }
 }
 .daily-row { display: grid; grid-template-columns: 75px 1fr 30px; gap: 20px; padding: 22px 0; border-bottom: 1px solid; }
 .daily-row time { font: 12px var(--font-mono), monospace; }
-.daily-row span { font-family: Georgia, serif; font-size: 19px; }
+.daily-row span { font-family: var(--font-sans); font-size: 19px; }
 .daily-row:hover span { text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: 6px; text-underline-offset: -3px; }
 .profile-column { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .badge-section, .portfolio-section { padding: 25px; border: 2px solid var(--ink); }
 .badge-section { background: var(--yellow); }
 .portfolio-section { background: var(--ink); color: var(--paper); }
-.badge-section h2, .portfolio-section h2 { margin: 35px 0 12px; font-family: Georgia, serif; font-size: 25px; line-height: 1.35; }
+.badge-section h2, .portfolio-section h2 { margin: 35px 0 12px; font-family: var(--font-sans); font-size: 25px; line-height: 1.35; }
 .badge-section > p:not(.panel-label), .portfolio-section > p:not(.panel-label) { font-size: 14px; line-height: 1.55; }
 .coming-label, .portfolio-section a { display: inline-block; margin-top: 28px; font: 700 11px var(--font-mono), monospace; }
 .portfolio-section a { color: var(--yellow); }
@@ -138,7 +140,7 @@ a { color: inherit; text-decoration: none; }
   min-height: 150px; display: flex; align-items: center; justify-content: space-between; gap: 25px;
   border-top: 2px solid var(--line);
 }
-.site-footer strong { font: 800 21px Georgia, serif; }
+.site-footer strong { font: 800 21px var(--font-sans); }
 .site-footer p { margin: 10px 0 0; color: var(--muted); font-size: 12px; }
 .footer-links { display: flex; gap: 25px; font-size: 12px; font-weight: 700; }
 
