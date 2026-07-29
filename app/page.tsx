@@ -25,8 +25,6 @@ export default function Home() {
           </h1>
           <p className="hero-intro">
             직접 해보고 실패한 모든 것을 기록합니다.
-            <br />
-            보기에는 말랑하지만 내용은 꽤 깊습니다.
           </p>
           <Link className="text-link" href="/coding">최근 기록 읽기 <span>→</span></Link>
         </div>
@@ -68,9 +66,11 @@ export default function Home() {
 {"\n"}  mood: &quot;curious&quot;
 {"\n"}{"}"}</code></pre>
           <div className="pudding-mini" id="pudding">
-            <div className="hamster" aria-hidden="true">
-              <i /><i /><b>••</b>
-            </div>
+            <img
+              className="pudding-avatar"
+              src="/pudding-avatar.png"
+              alt="크림색 몸에 갈색 귀와 분홍 코를 가진 푸딩이 픽셀 캐릭터"
+            />
             <div>
               <h3 className="pixel-copy">푸딩이의 최신 근황</h3>
               <p>건두부를 자다 깨서 먹을 정도로 좋아합니다.</p>

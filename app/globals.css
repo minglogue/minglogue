@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Galmuri9";
-  src: url("/fonts/Galmuri9.woff2") format("woff2");
+  font-family: "Galmuri11 Bold";
+  src: url("/fonts/Galmuri11-Bold.woff2") format("woff2");
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   font-display: swap;
 }
 
@@ -27,8 +27,8 @@ body {
   font-family: var(--font-sans);
 }
 .pixel-copy {
-  font-family: Galmuri9, var(--font-sans);
-  font-weight: 400;
+  font-family: "Galmuri11 Bold", var(--font-sans);
+  font-weight: 700;
   letter-spacing: 0;
   word-break: keep-all;
 }
@@ -75,8 +75,8 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: -.055em;
 }
 .hero h1.pixel-copy {
-  font-family: Galmuri9, var(--font-sans);
-  line-height: 1.25;
+  font-family: "Galmuri11 Bold", var(--font-sans);
+  line-height: 1.2;
   letter-spacing: 0;
 }
 .hero h1 span {
@@ -96,7 +96,7 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 15px;
   font: 400 62px/1 var(--font-accent), ui-rounded, "SF Pro Rounded", sans-serif;
 }
-.issue-card strong.pixel-copy { font-family: Galmuri9, var(--font-sans); }
+.issue-card strong.pixel-copy { font-family: "Galmuri11 Bold", var(--font-sans); }
 .issue-card a { display: block; font-size: 18px; line-height: 1.45; font-weight: 700; }
 
 .content-grid {
@@ -133,15 +133,12 @@ a { color: inherit; text-decoration: none; }
 .pudding-mini h3 { margin: 2px 0 8px; font-size: 18px; }
 .pudding-mini p { margin: 0; color: #cbc9bb; font-size: 14px; line-height: 1.55; }
 .pudding-mini a { display: inline-block; margin-top: 15px; color: var(--yellow); font-size: 12px; font-weight: 700; }
-.hamster {
-  position: relative; width: 82px; height: 76px;
-  display: grid; place-items: center;
-  border-radius: 46% 46% 43% 43%; background: #e8ad54; color: var(--ink);
+.pudding-avatar {
+  width: 82px;
+  height: 82px;
+  object-fit: cover;
+  image-rendering: pixelated;
 }
-.hamster i { position: absolute; top: -5px; width: 25px; height: 25px; border-radius: 50%; background: #a86a2a; }
-.hamster i:first-child { left: 4px; }
-.hamster i:nth-child(2) { right: 4px; }
-.hamster b { z-index: 1; letter-spacing: 17px; transform: translateX(8px); }
 
 .lower-sections {
   display: grid; grid-template-columns: 1.2fr .8fr; gap: 64px;
@@ -163,7 +160,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.35;
 }
 .badge-section h2.pixel-copy, .portfolio-section h2.pixel-copy {
-  font-family: Galmuri9, var(--font-sans);
+  font-family: "Galmuri11 Bold", var(--font-sans);
 }
 .badge-section > p:not(.panel-label), .portfolio-section > p:not(.panel-label) { font-size: 14px; line-height: 1.55; }
 .coming-label, .portfolio-section a { display: inline-block; margin-top: 28px; font: 700 11px var(--font-mono), monospace; }
