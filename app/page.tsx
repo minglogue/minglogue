@@ -19,9 +19,9 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow">DESIGNER BY DAY · DEVELOPER IN PROGRESS</p>
           <h1>
-            궁금해서 파봤고,
+            구조가 궁금해서,
             <br />
-            <span>까먹기 전에</span> 적어둡니다.
+            직접 <span>분해해 봅니다.</span>
           </h1>
           <p className="hero-intro">
             팝콘이 배우고 만들고 실패한 모든 것을 기록합니다.
@@ -72,8 +72,8 @@ export default function Home() {
               <i /><i /><b>••</b>
             </div>
             <div>
-              <h3>푸딩이의 오늘</h3>
-              <p>해바라기씨를 숨긴 위치를 또 잊어버렸습니다.</p>
+              <h3>푸딩이의 최신근황</h3>
+              <p>건두부를 자다 깨서 먹을 정도로 좋아합니다.</p>
               <a href="#pudding">푸딩이 공간 준비 중 <span>→</span></a>
             </div>
           </div>
@@ -98,13 +98,13 @@ export default function Home() {
         <div className="profile-column">
           <section className="badge-section" id="badges">
             <p className="panel-label">CERTIFICATIONS</p>
-            <h2>배운 것을 증명하는 배지</h2>
+            <h2>지금까지 취득한 것들</h2>
             <p>클라우드와 개발 공부의 결과를 하나씩 모읍니다.</p>
             <CredlyBadge />
           </section>
           <section className="portfolio-section" id="portfolio">
             <p className="panel-label">SELECTED WORK</p>
-            <h2>문제를 예쁘고 단단하게 해결합니다.</h2>
+            <h2>해온 것들을 모았습니다.</h2>
             <p>팝콘의 디자인과 개발 프로젝트를 소개할 공간입니다.</p>
             <a
               href="https://popcorn-kim.github.io/"

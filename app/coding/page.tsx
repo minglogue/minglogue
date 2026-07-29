@@ -17,9 +17,7 @@ export default function CodingPage() {
       <section className="archive-hero page-shell">
         <p className="eyebrow">CODING LOGS</p>
         <h1>
-          이해한 만큼 쓰고,
-          <br />
-          막힌 만큼 <span>남깁니다.</span>
+          분해해 본 <span>후기</span>
         </h1>
         <p>
           외워서 설명하기보다 직접 만들고 망가뜨리며 알게 된 것들을
@@ -37,4 +35,3 @@ export default function CodingPage() {
     </main>
   );
 }
-
