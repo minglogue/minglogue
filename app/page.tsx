@@ -65,13 +65,16 @@ export default function Home() {
               <h2>DAILY NOTES</h2>
               <span>전체 보기 →</span>
             </Link>
-            {dailyNotes.map((post) => (
-              <Link className="daily-row" href={`/posts/${post.slug}`} key={post.slug}>
-                <time dateTime={post.date}>{shortDate(post.date)}</time>
-                <span>{post.title}</span>
-                <b>→</b>
-              </Link>
-            ))}
+            <div className="post-list">
+              {dailyNotes.map((post) => (
+                <article className="post-row" key={post.slug}>
+                  <div className="post-category">{post.category}</div>
+                  <h3><Link href={`/posts/${post.slug}`}>{post.title}</Link></h3>
+                  <p>{post.excerpt}</p>
+                  <time dateTime={post.date}>{shortDate(post.date)}</time>
+                </article>
+              ))}
+            </div>
           </section>
         </div>
 
