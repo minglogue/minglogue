@@ -14,7 +14,7 @@ export function SiteHeader() {
       <nav className="main-nav" aria-label="주요 메뉴">
         <Link href="/coding">Coding Logs</Link>
         <Link href="/daily">Daily</Link>
-        <Link href="/#pudding">Pudding</Link>
+        <Link href="/pudding">Pudding</Link>
         <Link href="/#badges">Badges</Link>
         <a href="https://popcorn-kim.github.io/" target="_blank" rel="noreferrer">
           Portfolio <Arrow />
@@ -45,4 +45,3 @@ export function SiteFooter() {
     </footer>
   );
 }
-

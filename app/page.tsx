@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Arrow, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { CredlyBadge } from "@/components/credly-badge";
 import { getAllPosts } from "@/lib/posts";
+import { getPuddingPosts } from "@/lib/pudding";
 
 function shortDate(date: string) {
   return date.slice(5).replace("-", ".");
@@ -10,6 +11,7 @@ function shortDate(date: string) {
 export default function Home() {
   const posts = getAllPosts("coding").slice(0, 3);
   const dailyNotes = getAllPosts("daily").slice(0, 3);
+  const latestPudding = getPuddingPosts()[0];
 
   return (
     <main>
@@ -73,8 +75,8 @@ export default function Home() {
             />
             <div>
               <h3 className="pixel-copy">푸딩이의 최신 근황</h3>
-              <p>건두부를 자다 깨서 먹을 정도로 좋아합니다.</p>
-              <a href="#pudding">푸딩이 공간 준비 중 <span>→</span></a>
+              <p>{latestPudding?.content || "첫 번째 푸딩이 사진을 기다리고 있습니다."}</p>
+              <Link href="/pudding">푸딩이 사진 보러가기 <span>→</span></Link>
             </div>
           </div>
         </aside>

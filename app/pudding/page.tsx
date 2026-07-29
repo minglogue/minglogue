@@ -1,0 +1,64 @@
+import type { Metadata } from "next";
+import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { formatPostDate } from "@/lib/posts";
+import { getPuddingPosts } from "@/lib/pudding";
+
+export const metadata: Metadata = {
+  title: "푸딩이의 최신 근황",
+  description: "날짜와 태그로 모아보는 반려햄스터 푸딩이의 사진 기록.",
+};
+
+export default function PuddingPage() {
+  const posts = getPuddingPosts();
+
+  return (
+    <main>
+      <SiteHeader />
+      <section className="pudding-hero page-shell">
+        <div>
+          <p className="eyebrow">PUDDING&apos;S GALLERY</p>
+          <h1 className="pixel-copy">
+            푸딩이의 <span>최신 근황</span>
+          </h1>
+          <p>사진, 날짜, 태그만 간단하게 모아봅니다.</p>
+        </div>
+        <img src="/pudding-avatar.png" alt="곱슬털 햄스터 푸딩이 픽셀 캐릭터" />
+      </section>
+
+      <section className="pudding-gallery page-shell">
+        <div className="archive-heading">
+          <h2>PUDDING MOMENTS</h2>
+          <span>{posts.length}개의 근황</span>
+        </div>
+        {posts.length ? (
+          <div className="pudding-grid">
+            {posts.map((post) => (
+              <article className="pudding-card" key={post.slug}>
+                <div className={`pudding-photo${post.image ? "" : " is-placeholder"}`}>
+                  <img
+                    src={post.image ?? "/pudding-avatar.png"}
+                    alt={post.tags.length ? `푸딩이: ${post.tags.join(", ")}` : "푸딩이 사진"}
+                  />
+                </div>
+                <div className="pudding-card-meta">
+                  <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+                  <div className="pudding-tags">
+                    {post.tags.map((tag) => <span key={tag}>#{tag}</span>)}
+                  </div>
+                </div>
+                {post.content && <p>{post.content}</p>}
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div className="pudding-empty">
+            <img src="/pudding-avatar.png" alt="" />
+            <p>첫 번째 푸딩이 사진을 기다리고 있습니다.</p>
+          </div>
+        )}
+      </section>
+      <SiteFooter />
+    </main>
+  );
+}
+
