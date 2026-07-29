@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Jua } from "next/font/google";
+import "galmuri/dist/galmuri.css";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -15,6 +16,7 @@ const jua = Jua({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://popcorn-kim-log.popcornkim58.workers.dev"),
   title: {
     default: "PopcornKim's Logs",
     template: "%s · PopcornKim's Logs",
@@ -33,13 +35,13 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     siteName: "PopcornKim's Logs",
     title: "PopcornKim's Logs",
-    description: "궁금해서 파봤고, 까먹기 전에 적어둡니다.",
+    description: "구조가 궁금해서, 직접 분해해 봅니다.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "PopcornKim's Logs" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "PopcornKim's Logs",
-    description: "궁금해서 파봤고, 까먹기 전에 적어둡니다.",
+    description: "구조가 궁금해서, 직접 분해해 봅니다.",
     images: ["/og.png"],
   },
 };

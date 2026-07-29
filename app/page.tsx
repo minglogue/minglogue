@@ -18,13 +18,13 @@ export default function Home() {
       <section className="hero page-shell" id="top">
         <div className="hero-copy">
           <p className="eyebrow">DESIGNER BY DAY · DEVELOPER IN PROGRESS</p>
-          <h1>
+          <h1 className="pixel-copy">
             구조가 궁금해서,
             <br />
             직접 <span>분해해 봅니다.</span>
           </h1>
           <p className="hero-intro">
-            팝콘이 배우고 만들고 실패한 모든 것을 기록합니다.
+            직접 해보고 실패한 모든 것을 기록합니다.
             <br />
             보기에는 말랑하지만 내용은 꽤 깊습니다.
           </p>
@@ -32,7 +32,7 @@ export default function Home() {
         </div>
         <aside className="issue-card" aria-label="이번 주 추천 글">
           <p>THIS WEEK&apos;S LOG</p>
-          <strong># 024</strong>
+          <strong className="pixel-copy">#24</strong>
           <Link href={`/posts/${posts[0]?.slug ?? ""}`}>
             {posts[0]?.title ?? "첫 기록을 준비하고 있습니다."} <Arrow />
           </Link>
@@ -72,7 +72,7 @@ export default function Home() {
               <i /><i /><b>••</b>
             </div>
             <div>
-              <h3>푸딩이의 최신근황</h3>
+              <h3 className="pixel-copy">푸딩이의 최신 근황</h3>
               <p>건두부를 자다 깨서 먹을 정도로 좋아합니다.</p>
               <a href="#pudding">푸딩이 공간 준비 중 <span>→</span></a>
             </div>
@@ -98,13 +98,13 @@ export default function Home() {
         <div className="profile-column">
           <section className="badge-section" id="badges">
             <p className="panel-label">CERTIFICATIONS</p>
-            <h2>지금까지 취득한 것들</h2>
+            <h2 className="pixel-copy">지금까지 취득한 것들</h2>
             <p>클라우드와 개발 공부의 결과를 하나씩 모읍니다.</p>
             <CredlyBadge />
           </section>
           <section className="portfolio-section" id="portfolio">
             <p className="panel-label">SELECTED WORK</p>
-            <h2>해온 것들을 모았습니다.</h2>
+            <h2 className="pixel-copy">해온 것들을 모았습니다.</h2>
             <p>팝콘의 디자인과 개발 프로젝트를 소개할 공간입니다.</p>
             <a
               href="https://popcorn-kim.github.io/"
