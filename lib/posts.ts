@@ -12,11 +12,14 @@ export type Post = {
   content: string;
 };
 
-const markdownFiles = import.meta.glob("../content/**/*.md", {
-  eager: true,
-  import: "default",
-  query: "?raw",
-}) as Record<string, string>;
+const markdownFiles = import.meta.glob(
+  ["../content/coding/*.md", "../content/daily/*.md"],
+  {
+    eager: true,
+    import: "default",
+    query: "?raw",
+  },
+) as Record<string, string>;
 
 function parseFrontmatter(raw: string) {
   if (!raw.startsWith("---\n")) {
@@ -76,9 +79,15 @@ export function getPostBySlug(slug: string) {
 }
 
 export function formatPostDate(date: string) {
+  const parsedDate = new Date(`${date}T00:00:00`);
+
+  if (Number.isNaN(parsedDate.getTime())) {
+    return date || "날짜 미정";
+  }
+
   return new Intl.DateTimeFormat("ko-KR", {
     year: "numeric",
     month: "long",
     day: "numeric",
-  }).format(new Date(`${date}T00:00:00`));
+  }).format(parsedDate);
 }
