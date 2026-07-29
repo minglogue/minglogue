@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Jua } from "next/font/google";
-import "galmuri/dist/galmuri.css";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
