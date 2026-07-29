@@ -40,3 +40,8 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+
+# Obsidian workspace files and local writing helpers
+/content/.obsidian/
+/content/templete/
+/content/무제.md
