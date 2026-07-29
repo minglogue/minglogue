@@ -1,10 +1,10 @@
 ---
-title: "작은 사이드 프로젝트를 끝내는 방법"
-excerpt: "기능을 더하기보다 오늘 끝낼 범위를 정해봤다."
-date: "2026-07-12"
-category: "DAILY"
-kind: "daily"
-readTime: "4분"
+title: 작ex) 은 사이드 프로젝트를 끝내는 방법
+excerpt: 기능을 더하기보다 오늘 끝낼 범위를 정해봤다.
+date: 2026-07-12
+category: DAILY
+kind: daily
+readTime: 4분
 published: true
 ---
 

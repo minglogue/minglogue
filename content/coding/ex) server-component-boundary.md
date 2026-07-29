@@ -1,10 +1,10 @@
 ---
-title: "Server Component는 어디까지 서버일까?"
-excerpt: "경계를 직접 그려보며 이해한 렌더링 모델."
-date: "2026-07-24"
-category: "REACT"
-kind: "coding"
-readTime: "8분"
+title: ex) Server Component는 어디까지 서버일까?
+excerpt: 경계를 직접 그려보며 이해한 렌더링 모델.
+date: 2026-07-24
+category: REACT
+kind: coding
+readTime: 8분
 published: true
 ---
 

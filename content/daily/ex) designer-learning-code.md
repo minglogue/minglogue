@@ -1,10 +1,10 @@
 ---
-title: "디자이너가 개발을 배우며 달라진 시선"
-excerpt: "예쁜 화면 다음에 숨어 있는 규칙들이 보이기 시작했다."
-date: "2026-07-03"
-category: "DAILY"
-kind: "daily"
-readTime: "4분"
+title: ex) 디자이너가 개발을 배우며 달라진 시선
+excerpt: 예쁜 화면 다음에 숨어 있는 규칙들이 보이기 시작했다.
+date: 2026-07-03
+category: DAILY
+kind: daily
+readTime: 4분
 published: true
 ---
 

@@ -1,10 +1,10 @@
 ---
-title: "타입 좁히기를 습관으로 만드는 법"
-excerpt: "복잡한 조건문을 읽기 좋은 타입으로 바꾸기."
-date: "2026-07-18"
-category: "TYPESCRIPT"
-kind: "coding"
-readTime: "6분"
+title: ex) 타입 좁히기를 습관으로 만드는 법
+excerpt: 복잡한 조건문을 읽기 좋은 타입으로 바꾸기.
+date: 2026-07-18
+category: TYPESCRIPT
+kind: coding
+readTime: 6분
 published: true
 ---
 

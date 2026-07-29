@@ -1,10 +1,10 @@
 ---
-title: "처음 만난 컨테이너의 벽"
-excerpt: "이미지, 레이어, 볼륨을 직접 실행하며 정리했다."
-date: "2026-07-09"
-category: "DOCKER"
-kind: "coding"
-readTime: "7분"
+title: ex) 처음 만난 컨테이너의 벽
+excerpt: 이미지, 레이어, 볼륨을 직접 실행하며 정리했다.
+date: 2026-07-09
+category: DOCKER
+kind: coding
+readTime: 7분
 published: true
 ---
 
