@@ -21,6 +21,26 @@ const markdownFiles = import.meta.glob(
   },
 ) as Record<string, string>;
 
+const mediaFiles = import.meta.glob("../content/media/*", {
+  eager: true,
+  import: "default",
+  query: "?url",
+}) as Record<string, string>;
+
+function resolveObsidianImages(content: string) {
+  return content.replace(/!\[\[([^\]]+)\]\]/g, (original, fileName: string) => {
+    const mediaPath = Object.keys(mediaFiles).find(
+      (path) => path.split("/").pop() === fileName,
+    );
+
+    if (!mediaPath) {
+      return original;
+    }
+
+    return `![${fileName}](${mediaFiles[mediaPath]})`;
+  });
+}
+
 function parseFrontmatter(raw: string) {
   if (!raw.startsWith("---\n")) {
     return { data: {} as Record<string, string>, content: raw };
@@ -47,7 +67,10 @@ function parseFrontmatter(raw: string) {
       .filter(([key]) => key),
   );
 
-  return { data, content: raw.slice(end + 5).trimStart() };
+  return {
+    data,
+    content: resolveObsidianImages(raw.slice(end + 5).trimStart()),
+  };
 }
 
 function parsePost(path: string, raw: string): Post {
