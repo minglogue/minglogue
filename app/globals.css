@@ -197,6 +197,10 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.08;
   letter-spacing: -.055em;
 }
+.archive-hero h1.pixel-copy {
+  line-height: 1.22;
+  letter-spacing: 0;
+}
 .archive-hero h1 span, .studio-hero h1 span {
   background: linear-gradient(transparent 60%, var(--yellow) 60%);
 }
@@ -436,8 +440,8 @@ a { color: inherit; text-decoration: none; }
 .pudding-gallery { padding-top: 55px; padding-bottom: 90px; }
 .pudding-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 22px 18px;
   padding-top: 35px;
 }
 .pudding-card { min-width: 0; }
@@ -476,7 +480,7 @@ a { color: inherit; text-decoration: none; }
   .profile-column { grid-template-columns: 1fr 1fr; }
   .studio-hero, .studio-grid { grid-template-columns: 1fr; }
   .studio-hero { gap: 25px; padding: 70px 0 55px; }
-  .pudding-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pudding-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 600px) {
@@ -521,7 +525,10 @@ a { color: inherit; text-decoration: none; }
   .pudding-hero { grid-template-columns: 1fr 110px; gap: 24px; min-height: 350px; }
   .pudding-hero h1 { font-size: 40px; }
   .pudding-hero > img { box-shadow: 6px 6px 0 var(--yellow); }
-  .pudding-grid { grid-template-columns: 1fr; gap: 38px; }
+  .pudding-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 12px; }
+  .pudding-card-meta { align-items: flex-start; flex-direction: column; gap: 8px; padding-top: 11px; }
+  .pudding-tags { justify-content: flex-start; gap: 4px 7px; }
+  .pudding-card > p { font-size: 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

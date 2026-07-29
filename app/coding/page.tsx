@@ -16,7 +16,7 @@ export default function CodingPage() {
       <SiteHeader />
       <section className="archive-hero page-shell">
         <p className="eyebrow">CODING LOGS</p>
-        <h1>
+        <h1 className="pixel-copy">
           분해해 본 <span>후기</span>
         </h1>
         <p>
