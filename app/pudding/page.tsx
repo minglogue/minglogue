@@ -20,7 +20,7 @@ export default function PuddingPage() {
           <h1 className="pixel-copy">
             푸딩이의 <span>최신 근황</span>
           </h1>
-          <p>사진, 날짜, 태그만 간단하게 모아봅니다.</p>
+          <p>2026.03.15 ~</p>
         </div>
         <img src="/pudding-avatar.png" alt="곱슬털 햄스터 푸딩이 픽셀 캐릭터" />
       </section>
@@ -61,4 +61,3 @@ export default function PuddingPage() {
     </main>
   );
 }
-

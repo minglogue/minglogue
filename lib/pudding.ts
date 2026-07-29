@@ -14,7 +14,10 @@ const puddingMarkdownFiles = import.meta.glob("../content/pudding/*.md", {
 }) as Record<string, string>;
 
 const puddingImageFiles = import.meta.glob(
-  "../content/pudding/**/*.{avif,gif,jpeg,jpg,png,webp}",
+  [
+    "../content/pudding/**/*.{avif,gif,jpeg,jpg,png,webp}",
+    "../content/media/*.{avif,gif,jpeg,jpg,png,webp}",
+  ],
   {
     eager: true,
     import: "default",
@@ -43,13 +46,15 @@ function parsePuddingFile(path: string, raw: string): PuddingPost {
     content.match(/!\[[^\]]*\]\(([^)]+\.(?:avif|gif|jpe?g|png|webp))\)/i)?.[1] ??
     "";
   const imageName = (scalar("image") || bodyImage).replace(/^\.\//, "");
-  const directory = path.slice(0, path.lastIndexOf("/") + 1);
+  const imagePath = Object.keys(puddingImageFiles).find(
+    (assetPath) => assetPath.split("/").pop() === imageName,
+  );
 
   return {
     slug: path.split("/").pop()?.replace(/\.md$/, "") ?? "",
     date: scalar("date"),
     tags,
-    image: imageName ? puddingImageFiles[`${directory}${imageName}`] ?? null : null,
+    image: imagePath ? puddingImageFiles[imagePath] : null,
     content: content
       .replace(/!\[\[[^\]]+\]\]/g, "")
       .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
@@ -64,4 +69,3 @@ export function getPuddingPosts() {
     .filter((post) => post.published)
     .sort((a, b) => b.date.localeCompare(a.date));
 }
-

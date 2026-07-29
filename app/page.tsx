@@ -10,10 +10,11 @@ function shortDate(date: string) {
 
 export default function Home() {
   const codingPosts = getAllPosts("coding");
-  const posts = codingPosts.slice(0, 3);
-  const dailyNotes = getAllPosts("daily").slice(0, 3);
+  const posts = codingPosts.slice(0, 5);
+  const dailyNotes = getAllPosts("daily").slice(0, 5);
   const latestPudding = getPuddingPosts()[0];
   const currentFocus = codingPosts[0]?.category ?? "첫 기록 준비 중";
+  const latestLogNumber = codingPosts[0]?.slug.match(/^(\d{4})/)?.[1] ?? "0000";
 
   return (
     <main>
@@ -34,7 +35,7 @@ export default function Home() {
         </div>
         <aside className="issue-card" aria-label="이번 주 추천 글">
           <p>THIS WEEK&apos;S LOG</p>
-          <strong className="pixel-copy">#24</strong>
+          <strong className="pixel-copy">#{latestLogNumber}</strong>
           <Link href={`/posts/${posts[0]?.slug ?? ""}`}>
             {posts[0]?.title ?? "첫 기록을 준비하고 있습니다."} <Arrow />
           </Link>
@@ -111,7 +112,7 @@ export default function Home() {
         </section>
         <section className="portfolio-section" id="portfolio">
           <p className="panel-label">SELECTED WORK</p>
-          <h2 className="pixel-copy">해온 것들을 모았습니다.</h2>
+          <h2 className="pixel-copy">포트폴리오 링크입니다.</h2>
           <p>대표 프로젝트, 기여도 확인</p>
           <a
             href="https://popcorn-kim.github.io/"

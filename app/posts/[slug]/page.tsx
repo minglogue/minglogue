@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { formatPostDate, getPostBySlug } from "@/lib/posts";
 
@@ -52,7 +53,10 @@ export default async function PostPage({ params }: PageProps) {
           </div>
         </header>
         <div className="markdown-body">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeHighlight]}
+          >
             {post.content}
           </ReactMarkdown>
         </div>
@@ -67,4 +71,3 @@ export default async function PostPage({ params }: PageProps) {
     </main>
   );
 }
-
