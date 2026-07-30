@@ -1,13 +1,13 @@
 ---
 title: 푸딩이 기록의 이미지가 하나만 나왔다.
-excerpt: 이 글에서 다룬 내용을 한 문장으로 요약합니다.
+excerpt: 푸딩갤러리 약간의 개편
 date: 2026-07-30
 category: NEXT.JS
 kind: coding
 readTime: 5분
 tags:
   - work
-published: false
+published: true
 ---
 
 # 무엇을 만들었나요?

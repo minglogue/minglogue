@@ -5,9 +5,9 @@ date: 2026-07-30
 category: NEXT.JS
 kind: coding
 readTime: 5분
-published: true
 tags:
   - homepage
+published: true
 ---
 
 # 무엇을 만들었나요?
