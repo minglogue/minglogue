@@ -6,6 +6,8 @@ category: DAILY
 kind: daily
 readTime: 1분
 published: true
+tags:
+  - portfolio
 ---
 # 한 명의 노력으로 되는게 아니라
 

@@ -6,6 +6,8 @@ category: WEDDING
 kind: daily
 readTime: 3분
 published: true
+tags:
+  - wedding
 ---
 
 # 오늘 있었던 일

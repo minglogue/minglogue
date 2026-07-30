@@ -6,6 +6,8 @@ category: NEXT.JS
 kind: coding
 readTime: 5분
 published: true
+tags:
+  - homepage
 ---
 
 # 무엇을 알게되었나요?
