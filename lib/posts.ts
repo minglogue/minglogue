@@ -6,6 +6,7 @@ export type Post = {
   excerpt: string;
   date: string;
   category: string;
+  tags: string[];
   kind: PostKind;
   readTime: string;
   published: boolean;
@@ -73,6 +74,28 @@ function parseFrontmatter(raw: string) {
   };
 }
 
+function parseTags(raw: string) {
+  const frontmatter = raw.match(/^---\n([\s\S]*?)\n---\n?/)?.[1] ?? "";
+  const tagsBlock =
+    frontmatter.match(/^tags:\s*\n((?:\s+-\s+.*\n?)*)/m)?.[1] ?? "";
+
+  if (tagsBlock) {
+    return [...tagsBlock.matchAll(/^\s+-\s+(.+)$/gm)].map((match) =>
+      match[1].trim().replace(/^["']|["']$/g, "").replace(/^#/, ""),
+    );
+  }
+
+  const inlineTags = frontmatter.match(/^tags:\s*(.+)$/m)?.[1] ?? "";
+
+  return inlineTags
+    .replace(/^\[|\]$/g, "")
+    .split(",")
+    .map((tag) =>
+      tag.trim().replace(/^["']|["']$/g, "").replace(/^#/, ""),
+    )
+    .filter(Boolean);
+}
+
 function parsePost(path: string, raw: string): Post {
   const { data, content } = parseFrontmatter(raw);
   const slug = path.split("/").pop()?.replace(/\.md$/, "") ?? "";
@@ -83,6 +106,7 @@ function parsePost(path: string, raw: string): Post {
     excerpt: String(data.excerpt ?? ""),
     date: String(data.date ?? ""),
     category: String(data.category ?? "NOTE"),
+    tags: parseTags(raw),
     kind: data.kind === "daily" ? "daily" : "coding",
     readTime: String(data.readTime ?? "3분"),
     published: data.published !== "false",
