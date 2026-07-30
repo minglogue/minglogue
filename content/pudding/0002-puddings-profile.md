@@ -3,7 +3,6 @@ title: 0002-puddings-profile
 date: 2026-07-30
 tags:
   - 프로필사진
-image: ./제목 없는 디자인.png
 published: true
 ---
 ![[제목 없는 디자인.png]]
