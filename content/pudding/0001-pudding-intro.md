@@ -6,5 +6,5 @@ tags:
 image: ./photo.jpg
 published: true
 ---
-![[photo.jpg]]
 건두부를 자다 깨서 먹을 정도로 좋아합니다. 자다 깨서 먹는게 건두부만은 아니지만..
+![[photo.jpg]]
