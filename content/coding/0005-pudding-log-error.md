@@ -1,12 +1,12 @@
 ---
 title: 푸딩이 기록의 이미지가 하나만 나왔다.
-excerpt: 푸딩갤러리 약간의 개편
+excerpt: 푸딩이 갤러리에서 모든 글에 같은 사진이 나타난 원인을 찾고 Markdown 본문 이미지를 사용하도록 해결한 과정입니다.
 date: 2026-07-30
 category: NEXT.JS
 kind: coding
 readTime: 5분
 tags:
-  - work
+  - homepage
 published: true
 ---
 
@@ -35,7 +35,7 @@ pudding or media 폴더의 photo.jpg파일을 이미지로 가져오라는 뜻
 ## 2. 해당 부분 이미지
 
 
-> ![[사용자 첨부 파일.png]]
+> ![[pudding-gallery-duplicate-image.png]]
 푸딩이 이미지가 하나만 나온다.
 
 ## 3. 이번에 배운 것
@@ -49,4 +49,3 @@ pudding or media 폴더의 photo.jpg파일을 이미지로 가져오라는 뜻
 ## 한 줄 정리
 
 푸딩이 사진은 속성이 아니라 본문에 있는걸로 노출되도록 하자.
-

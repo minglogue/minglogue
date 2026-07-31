@@ -5,5 +5,5 @@ tags:
   - 프로필사진
 published: true
 ---
-![[제목 없는 디자인.png]]
+![[pudding-profile-portrait.png]]
 푸딩이는 본인이 이렇게 귀여운걸 알까요?

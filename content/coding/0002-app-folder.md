@@ -1,6 +1,6 @@
 ---
 title: Next.js는 어떻게 폴더를 홈페이지 주소로 바꿀까?
-excerpt: 접속->폴더확인->coding폴더발견->coding/page.tsx실행
+excerpt: Next.js App Router에서 app 폴더와 page.tsx가 홈페이지 주소와 화면으로 연결되는 구조를 설명합니다.
 date: 2026-07-30
 category: NEXT.JS
 kind: coding
@@ -47,4 +47,3 @@ coding/page.tsx 실행
 ## 한 줄 정리
 
 `app` 안의 폴더는 주소가 되고, `page.tsx`는 그 주소의 화면이 된다.
-

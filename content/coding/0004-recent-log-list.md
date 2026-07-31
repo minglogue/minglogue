@@ -1,6 +1,6 @@
 ---
 title: 메인페이지의 최신글 가져오기
-excerpt: 최신 글 5개 불러오기
+excerpt: Next.js 메인페이지에서 코딩 기록은 최신 5개, 푸딩이 기록은 최신 1개만 불러오는 방법을 설명합니다.
 date: 2026-07-30
 category: NEXT.JS
 kind: coding
@@ -35,11 +35,11 @@ const latestPudding = getPuddingPosts()[0];
 
 옵시디언에 이미지를 붙여 넣고 아래 문장을 실제 이미지로 교체합니다.
 
-> ![[스크린샷 2026-07-30 오전 11.26.55.png]]
+> ![[homepage-recent-coding-logs.png]]
 
 최신 코딩 글 5개 (현재 작성한 글이 이번에 네번째라서..... 3개뿐임)
 
-> ![[스크린샷 2026-07-30 오전 11.29.35.png]]
+> ![[homepage-pudding-latest-card.png]]
 
 푸딩이는 최신 글의 본문이 노출됨
 ## 3. 이번에 배운 것
@@ -52,4 +52,3 @@ const latestPudding = getPuddingPosts()[0];
 ## 한 줄 정리
 
 이번 기록에서 가장 오래 기억하고 싶은 문장을 적습니다.
-

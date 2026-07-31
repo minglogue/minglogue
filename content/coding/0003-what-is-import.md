@@ -1,6 +1,6 @@
 ---
-title: import란?
-excerpt: 다른 파일에서 필요한 것 가져오기
+title: JavaScript import란? Next.js에서 다른 파일을 가져오는 방법
+excerpt: JavaScript와 Next.js에서 import로 다른 파일의 함수와 화면 부품을 가져오는 방법을 초보자 눈높이로 설명합니다.
 date: 2026-07-30
 category: NEXT.JS
 kind: coding
@@ -54,4 +54,3 @@ export default function Home() {
 ## 한 줄 정리
 
 `import` = 가져와.
-

@@ -1,6 +1,6 @@
 ---
 title: 웨딩 촬영날 있었던 기록
-excerpt: 결혼 준비중
+excerpt: 결혼 준비 과정에서 경험한 웨딩 촬영의 장면과 솔직한 소감을 사진과 함께 기록합니다.
 date: 2026-07-27
 category: WEDDING
 kind: daily
@@ -19,7 +19,7 @@ tags:
 ## 기억하고 싶은 장면
 
 
-> ![[KakaoTalk_Photo_2026-07-29-16-24-29.png]]
+> ![[wedding-studio-photo-collage.png]]
 
 ## 그때 든 생각
 
