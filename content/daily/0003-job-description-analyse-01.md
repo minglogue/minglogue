@@ -1,11 +1,13 @@
 ---
 title: 채용공고와 나의 강/약점 비교
 excerpt: 내가 잘하고, 하고싶은 일은 뭘까?
-date: 2026-07-30
+date: 2026-07-31
 category: DAILY
 kind: daily
 readTime: 10분
 published: true
+tags:
+  - jd
 ---
 ## 1. C사 : 고객 제조 현장에 들어가 문제를 정의하고, PORTA와 AI기술로 해결까지 책임지는 사람
 
