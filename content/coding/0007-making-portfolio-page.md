@@ -1,6 +1,6 @@
 ---
 title: 포트폴리오를 페이지로 통합했다
-excerpt: 외부 포트폴리오를 Next.js 블로그 안에 통합하고 Markdown만으로 프로젝트 상세 페이지를 만드는 구조를 설명합니다.
+excerpt: 외부 포트폴리오를 Next.js 블로그 안에 통합하고 Markdown만으로 프로젝트 상세 페이지를 만드는 구조를 설명
 date: 2026-07-31
 category: NEXT.JS
 kind: coding

@@ -1,6 +1,6 @@
 ---
 title: AWS Certified AI Practitioner 준비
-excerpt: AWS Certified AI Practitioner 시험 일정과 학습 범위를 정리하고 SQLD까지 이어지는 자격증 공부 계획을 기록합니다.
+excerpt: AWS Certified AI Practitioner 시험 일정과 학습 범위를 정리하고 SQLD까지 이어지는 자격증 공부 계획을 기록
 date: 2026-07-30
 category: DAILY
 kind: daily

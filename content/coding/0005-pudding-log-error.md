@@ -1,6 +1,6 @@
 ---
 title: 푸딩이 기록의 이미지가 하나만 나왔다.
-excerpt: 푸딩이 갤러리에서 모든 글에 같은 사진이 나타난 원인을 찾고 Markdown 본문 이미지를 사용하도록 해결한 과정입니다.
+excerpt: 푸딩이 갤러리에서 모든 글에 같은 사진이 나타난 원인을 찾고 Markdown 본문 이미지를 사용하도록 해결한 과정
 date: 2026-07-30
 category: NEXT.JS
 kind: coding

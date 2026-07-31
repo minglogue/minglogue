@@ -1,6 +1,6 @@
 ---
 title: 내 기록창구 만들기
-excerpt: Next.js와 Markdown으로 코딩 공부와 일상을 직접 작성하고 배포할 수 있도록 만든 개인 블로그 프로젝트입니다.
+excerpt: Next.js와 Markdown으로 코딩 공부와 일상을 직접 작성하고 배포할 수 있도록 만든 개인 블로그 프로젝트
 period: 2026.07.27 ~ 진행 중
 role: 기획, 디자인 색감과 방향, 섹션 순서, AI와 함께 개발, 콘텐츠 작성
 contribution: 80%

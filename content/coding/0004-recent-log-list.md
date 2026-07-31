@@ -1,6 +1,6 @@
 ---
 title: 메인페이지의 최신글 가져오기
-excerpt: Next.js 메인페이지에서 코딩 기록은 최신 5개, 푸딩이 기록은 최신 1개만 불러오는 방법을 설명합니다.
+excerpt: Next.js 메인페이지에서 코딩 기록은 최신 5개, 푸딩이 기록은 최신 1개만 불러오는 방법을 설명
 date: 2026-07-30
 category: NEXT.JS
 kind: coding

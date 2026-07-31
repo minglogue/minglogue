@@ -1,6 +1,6 @@
 ---
 title: 홈페이지 만들기 프로젝트
-excerpt: Next.js와 TSX로 개인 블로그를 만들며 메인 히어로 영역의 구조와 JSX 문법을 이해한 과정을 기록합니다.
+excerpt: Next.js와 TSX로 개인 블로그를 만들며 메인 히어로 영역의 구조와 JSX 문법을 이해한 과정을 기록
 date: 2026-07-29
 category: NEXT.JS
 kind: coding

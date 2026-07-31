@@ -1,6 +1,6 @@
 ---
 title: 웨딩 촬영날 있었던 기록
-excerpt: 결혼 준비 과정에서 경험한 웨딩 촬영의 장면과 솔직한 소감을 사진과 함께 기록합니다.
+excerpt: 결혼 준비 과정에서 경험한 웨딩 촬영의 장면과 솔직한 소감
 date: 2026-07-27
 category: WEDDING
 kind: daily

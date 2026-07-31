@@ -1,6 +1,6 @@
 ---
 title: 사이트맵 XML이란? Next.js 블로그에 필요한 이유
-excerpt: 사이트맵 XML이 검색엔진에 블로그 주소를 알려주는 원리와 Next.js 블로그에 필요한 이유를 설명합니다.
+excerpt: 사이트맵 XML이 검색엔진에 블로그 주소를 알려주는 원리와 Next.js 블로그에 필요한 이유를 설명
 date: 2026-07-31
 category: NEXT.JS
 kind: coding
