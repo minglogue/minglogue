@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     "디자이너 팝콘의 코딩 공부, 일상, 포트폴리오 그리고 반려햄스터 푸딩이의 기록.",
   authors: [{ name: "팝콘" }],
   creator: "팝콘",
+  verification: {
+    google: "i4V_1VFJOeMBtjfWj9t76I2cv_N8cCRWYF-iYpL0RtI",
+  },
   keywords: ["개발 블로그", "코딩 기록", "디자인", "Next.js", "팝콘"],
   icons: {
     icon: "/favicon.svg",
