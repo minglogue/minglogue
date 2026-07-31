@@ -16,9 +16,7 @@ export function SiteHeader() {
         <Link href="/daily">Daily</Link>
         <Link href="/pudding">Pudding</Link>
         <Link href="/#badges">Badges</Link>
-        <a href="https://popcorn-kim.github.io/" target="_blank" rel="noreferrer">
-          Portfolio <Arrow />
-        </a>
+        <Link href="/portfolio">Portfolio</Link>
       </nav>
     </header>
   );
@@ -40,6 +38,7 @@ export function SiteFooter() {
           GitHub
         </a>
         <Link href="/studio">Studio</Link>
+        <Link href="/portfolio">Portfolio</Link>
         <Link href="/">홈으로 ↑</Link>
       </div>
     </footer>
