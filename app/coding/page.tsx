@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PostList } from "@/components/post-list";
+import { FilterablePostArchive } from "@/components/filterable-post-archive";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { getAllPosts } from "@/lib/posts";
 
@@ -24,13 +24,7 @@ export default function CodingPage() {
           기록합니다.
         </p>
       </section>
-      <section className="archive-content page-shell">
-        <div className="archive-heading">
-          <h2>ALL CODING LOGS</h2>
-          <span>{posts.length}개의 기록</span>
-        </div>
-        <PostList posts={posts} />
-      </section>
+      <FilterablePostArchive heading="ALL CODING LOGS" posts={posts} />
       <SiteFooter />
     </main>
   );
