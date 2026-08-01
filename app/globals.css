@@ -851,11 +851,17 @@ a { color: inherit; text-decoration: none; }
   color: var(--paper);
 }
 .portfolio-result > p { color: var(--yellow); }
+.portfolio-result > h2 {
+  margin: 0 0 18px;
+  font-size: 27px;
+  line-height: 1.3;
+}
 .portfolio-result-copy {
   max-width: 780px;
-  font-size: clamp(26px, 4vw, 42px);
-  font-weight: 800;
-  line-height: 1.45;
+  color: #dedbd0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.7;
 }
 .portfolio-result-copy p { margin: 0 0 15px; }
 .portfolio-result-copy p:last-child { margin-bottom: 0; }

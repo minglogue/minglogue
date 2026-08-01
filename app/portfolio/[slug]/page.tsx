@@ -100,14 +100,14 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
             <section className="portfolio-overview" aria-label="문제와 해결">
               <article>
                 <p>01 / PROBLEM</p>
-                <h2>왜 필요했을까?</h2>
+                <h2>프로젝트 목적</h2>
                 <div className="portfolio-rich-copy">
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>{project.problem}</ReactMarkdown>
                 </div>
               </article>
               <article>
                 <p>02 / SOLUTION</p>
-                <h2>어떻게 해결했을까?</h2>
+                <h2>해결방법</h2>
                 <div className="portfolio-rich-copy">
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>{project.solution}</ReactMarkdown>
                 </div>
@@ -118,6 +118,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
           {project.result && (
             <section className="portfolio-result">
               <p>PROJECT RESULT</p>
+              <h2>최종 결과</h2>
               <div className="portfolio-result-copy">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{project.result}</ReactMarkdown>
               </div>
