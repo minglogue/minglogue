@@ -18,6 +18,7 @@ const puddingImageFiles = import.meta.glob(
   [
     "../content/pudding/**/*.{avif,gif,jpeg,jpg,png,webp}",
     "../content/media/*.{avif,gif,jpeg,jpg,png,webp}",
+    "../content/*.{avif,gif,jpeg,jpg,png,webp}",
   ],
   {
     eager: true,

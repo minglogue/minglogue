@@ -1,8 +1,9 @@
 ---
-title: "0003-pudding-log-01"
-date: "2026-08-01"
+title: 0003-pudding-log-01
+date: 2026-08-01
 tags:
   - 푸딩이
+  - 멍한표정
 published: true
 ---
 
