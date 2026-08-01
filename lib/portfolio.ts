@@ -112,6 +112,62 @@ function numberedGallery(frontmatter: string) {
   );
 }
 
+function section(content: string, heading: string) {
+  return (
+    content.match(
+      new RegExp(
+        `^##\\s+${heading}\\s*$\\n([\\s\\S]*?)(?=^##\\s+|(?![\\s\\S]))`,
+        "m",
+      ),
+    )?.[1]?.trim() ?? ""
+  );
+}
+
+function subSections(content: string) {
+  return [
+    ...content.matchAll(
+      /^###\s+(.+)\n([\s\S]*?)(?=^###\s+|(?![\s\S]))/gm,
+    ),
+  ].map(([, title, description]) => ({
+    title: title.trim(),
+    description: description.trim(),
+  }));
+}
+
+function bodyHighlights(content: string) {
+  return subSections(section(content, "핵심 결과"));
+}
+
+function bodyProcess(content: string) {
+  return subSections(section(content, "만든 과정")).map((item) => {
+    const [label, title = ""] = item.title.split("|").map((part) => part.trim());
+    return { label, title: title || label, description: item.description };
+  });
+}
+
+function bodyOverview(content: string) {
+  return Object.fromEntries(
+    subSections(section(content, "프로젝트 요약")).map((item) => [
+      item.title,
+      item.description,
+    ]),
+  );
+}
+
+function withoutPortfolioSections(content: string) {
+  return ["프로젝트 요약", "핵심 결과", "만든 과정"].reduce(
+    (rest, heading) =>
+      rest.replace(
+        new RegExp(
+          `^##\\s+${heading}\\s*$\\n[\\s\\S]*?(?=^##\\s+|(?![\\s\\S]))`,
+          "m",
+        ),
+        "",
+      ),
+    content,
+  ).trim();
+}
+
 function parseProject(path: string, raw: string): PortfolioProject {
   const frontmatterMatch = raw.match(/^---\n([\s\S]*?)\n---\n?/);
   const frontmatter = frontmatterMatch?.[1] ?? "";
@@ -131,6 +187,10 @@ function parseProject(path: string, raw: string): PortfolioProject {
     const src = resolveMedia(fileName);
     return src ? [{ src, alt: alt || fileName }] : [];
   });
+  const body = raw.slice(frontmatterMatch?.[0].length ?? 0).trim();
+  const overview = bodyOverview(body);
+  const highlights = bodyHighlights(body);
+  const process = bodyProcess(body);
 
   return {
     slug: path.split("/").pop()?.replace(/^\d+-/, "").replace(/\.md$/, "") ?? "",
@@ -145,20 +205,24 @@ function parseProject(path: string, raw: string): PortfolioProject {
     published: scalar(frontmatter, "published") !== "false",
     projectUrl: scalar(frontmatter, "projectUrl"),
     githubUrl: scalar(frontmatter, "githubUrl"),
-    problem: scalar(frontmatter, "problem"),
-    solution: scalar(frontmatter, "solution"),
-    result: scalar(frontmatter, "result"),
+    problem: overview["문제"] || scalar(frontmatter, "problem"),
+    solution: overview["해결"] || scalar(frontmatter, "solution"),
+    result: overview["결과"] || scalar(frontmatter, "result"),
     users: scalar(frontmatter, "users"),
-    highlights: numberedHighlights(frontmatter).length
-      ? numberedHighlights(frontmatter)
-      : legacyHighlights,
-    process: numberedProcess(frontmatter).length
-      ? numberedProcess(frontmatter)
-      : legacyProcess,
+    highlights: highlights.length
+      ? highlights
+      : numberedHighlights(frontmatter).length
+        ? numberedHighlights(frontmatter)
+        : legacyHighlights,
+    process: process.length
+      ? process
+      : numberedProcess(frontmatter).length
+        ? numberedProcess(frontmatter)
+        : legacyProcess,
     gallery: numberedGallery(frontmatter).length
       ? numberedGallery(frontmatter)
       : legacyGallery,
-    content: raw.slice(frontmatterMatch?.[0].length ?? 0).trim(),
+    content: withoutPortfolioSections(body),
   };
 }
 

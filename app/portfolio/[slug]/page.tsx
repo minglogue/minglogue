@@ -101,12 +101,16 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
               <article>
                 <p>01 / PROBLEM</p>
                 <h2>왜 필요했을까?</h2>
-                <p>{project.problem}</p>
+                <div className="portfolio-rich-copy">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{project.problem}</ReactMarkdown>
+                </div>
               </article>
               <article>
                 <p>02 / SOLUTION</p>
                 <h2>어떻게 해결했을까?</h2>
-                <p>{project.solution}</p>
+                <div className="portfolio-rich-copy">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{project.solution}</ReactMarkdown>
+                </div>
               </article>
             </section>
           )}
@@ -114,7 +118,9 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
           {project.result && (
             <section className="portfolio-result">
               <p>PROJECT RESULT</p>
-              <h2>{project.result}</h2>
+              <div className="portfolio-result-copy">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{project.result}</ReactMarkdown>
+              </div>
             </section>
           )}
 
@@ -129,7 +135,9 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
                   <article key={`${highlight.title}-${index}`}>
                     <span>{String(index + 1).padStart(2, "0")}</span>
                     <h3>{highlight.title}</h3>
-                    <p>{highlight.description}</p>
+                    <div className="portfolio-rich-copy">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{highlight.description}</ReactMarkdown>
+                    </div>
                   </article>
                 ))}
               </div>
@@ -147,7 +155,9 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
                   <article key={`${step.label}-${index}`}>
                     <span>{String(index + 1).padStart(2, "0")} / {step.label}</span>
                     <h3>{step.title}</h3>
-                    <p>{step.description}</p>
+                    <div className="portfolio-rich-copy">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{step.description}</ReactMarkdown>
+                    </div>
                   </article>
                 ))}
               </div>
