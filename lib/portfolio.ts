@@ -116,7 +116,7 @@ function section(content: string, heading: string) {
   return (
     content.match(
       new RegExp(
-        `^##\\s+${heading}\\s*$\\n([\\s\\S]*?)(?=^##\\s+|(?![\\s\\S]))`,
+        `^##\\s+${heading}\\s*$\\n([\\s\\S]*?)(?=^#{1,2}\\s+|(?![\\s\\S]))`,
         "m",
       ),
     )?.[1]?.trim() ?? ""
@@ -159,7 +159,7 @@ function withoutPortfolioSections(content: string) {
     (rest, heading) =>
       rest.replace(
         new RegExp(
-          `^##\\s+${heading}\\s*$\\n[\\s\\S]*?(?=^##\\s+|(?![\\s\\S]))`,
+          `^##\\s+${heading}\\s*$\\n[\\s\\S]*?(?=^#{1,2}\\s+|(?![\\s\\S]))`,
           "m",
         ),
         "",
