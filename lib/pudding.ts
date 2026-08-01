@@ -3,6 +3,7 @@ export type PuddingPost = {
   date: string;
   tags: string[];
   image: string | null;
+  images: string[];
   content: string;
   published: boolean;
 };
@@ -41,20 +42,30 @@ function parsePuddingFile(path: string, raw: string): PuddingPost {
         .split(",")
         .map((tag) => tag.trim())
         .filter(Boolean);
-  const bodyImage =
-    content.match(/!\[\[([^\]|]+\.(?:avif|gif|jpe?g|png|webp))(?:\|[^\]]+)?\]\]/i)?.[1] ??
-    content.match(/!\[[^\]]*\]\(([^)]+\.(?:avif|gif|jpe?g|png|webp))\)/i)?.[1] ??
-    "";
-  const imageName = (scalar("image") || bodyImage).replace(/^\.\//, "");
-  const imagePath = Object.keys(puddingImageFiles).find(
-    (assetPath) => assetPath.split("/").pop() === imageName,
-  );
+  const bodyImages = [
+    ...[...content.matchAll(/!\[\[([^\]|]+\.(?:avif|gif|jpe?g|png|webp))(?:\|[^\]]+)?\]\]/gi)].map(
+      (match) => match[1],
+    ),
+    ...[...content.matchAll(/!\[[^\]]*\]\(([^)]+\.(?:avif|gif|jpe?g|png|webp))\)/gi)].map(
+      (match) => match[1],
+    ),
+  ];
+  const imageNames = [scalar("image"), ...bodyImages]
+    .map((name) => name.replace(/^\.\//, "").split("/").pop() ?? "")
+    .filter((name, index, names) => name && names.indexOf(name) === index);
+  const images = imageNames.flatMap((imageName) => {
+    const imagePath = Object.keys(puddingImageFiles).find(
+      (assetPath) => assetPath.split("/").pop() === imageName,
+    );
+    return imagePath ? [puddingImageFiles[imagePath]] : [];
+  });
 
   return {
     slug: path.split("/").pop()?.replace(/\.md$/, "") ?? "",
     date: scalar("date"),
     tags,
-    image: imagePath ? puddingImageFiles[imagePath] : null,
+    image: images[0] ?? null,
+    images,
     content: content
       .replace(/!\[\[[^\]]+\]\]/g, "")
       .replace(/!\[[^\]]*\]\([^)]+\)/g, "")

@@ -10,6 +10,16 @@ export const metadata: Metadata = {
 
 export default function PuddingPage() {
   const posts = getPuddingPosts();
+  const moments = posts.flatMap((post) =>
+    post.images.length
+      ? post.images.map((image, index) => ({
+          ...post,
+          image,
+          content: index === 0 ? post.content : "",
+          momentKey: `${post.slug}-${index}`,
+        }))
+      : [{ ...post, image: null, momentKey: `${post.slug}-empty` }],
+  );
 
   return (
     <main>
@@ -28,12 +38,12 @@ export default function PuddingPage() {
       <section className="pudding-gallery page-shell">
         <div className="archive-heading">
           <h2>PUDDING MOMENTS</h2>
-          <span>{posts.length}개의 근황</span>
+          <span>{moments.length}개의 순간</span>
         </div>
         {posts.length ? (
           <div className="pudding-grid">
-            {posts.map((post) => (
-              <article className="pudding-card" key={post.slug}>
+            {moments.map((post) => (
+              <article className="pudding-card" key={post.momentKey}>
                 <div className={`pudding-photo${post.image ? "" : " is-placeholder"}`}>
                   <img
                     src={post.image ?? "/pudding-avatar.png"}
