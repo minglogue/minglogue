@@ -857,6 +857,10 @@ a { color: inherit; text-decoration: none; }
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+.portfolio-highlight-grid {
+  width: min(100%, 720px);
+  margin: 0 auto;
+}
 .portfolio-highlight-grid article,
 .portfolio-process-grid article {
   min-height: 210px;

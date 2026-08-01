@@ -19,20 +19,29 @@ githubUrl: https://github.com/popcorn-kim/popcorn-kim-log
 users: 코딩 공부와 일상을 직접 기록하고 싶은 나
 problem: 기존 기록 도구의 정해진 형식에서 벗어나 색감과 글의 배치까지 직접 결정할 수 있는 개인 공간이 필요했습니다.
 solution: Markdown으로 글을 작성하면 코딩, 일상, 푸딩이, 포트폴리오 페이지에 자동으로 연결되는 Next.js 블로그를 만들었습니다.
-result: 직접 글을 쓰고 GitHub에 올리면 Cloudflare를 통해 인터넷에 배포되는 나만의 기록 시스템을 완성했습니다.
-highlights:
-  - 4개의 콘텐츠 영역|코딩 기록, 일상, 푸딩이, 포트폴리오를 한 사이트에 모았습니다.
-  - Markdown 자동 페이지 생성|새 글 파일을 추가하면 목록과 상세 페이지가 같은 디자인으로 만들어집니다.
-  - GitHub·Cloudflare 배포|작성한 글을 저장하고 인터넷에 공개하는 흐름을 직접 운영합니다.
-  - 검색 기반 완성|Google Search Console과 사이트맵을 연결해 검색엔진이 글을 발견할 수 있게 했습니다.
-process:
-  - PLAN|기록의 목적을 정했습니다|공부 과정과 일상을 자유롭게 남기면서 포트폴리오로도 활용할 방향을 정했습니다.
-  - DESIGN|보이는 순서를 설계했습니다|검정, 아이보리, 노랑을 중심으로 색감과 메인 섹션의 순서를 결정했습니다.
-  - BUILD|기록이 자동으로 연결되게 만들었습니다|Next.js와 TypeScript로 Markdown 글, 이미지, 태그가 화면에 나타나는 구조를 만들었습니다.
-  - PUBLISH|직접 운영할 수 있게 연결했습니다|GitHub와 Cloudflare를 연결하고 사이트맵과 Search Console까지 설정했습니다.
-gallery:
-  - obsidian-portfolio-frontmatter-properties.png|옵시디언에서 프로젝트 속성을 작성한 화면
-  - portfolio-properties-guide.png|포트폴리오 속성과 실제 화면의 연결을 정리한 안내 이미지
+result: 옵시디언에 직접 글을 쓰고 GitHub에 올리면 Cloudflare를 통해 인터넷에 배포되는 나만의 기록 시스템을 완성했습니다.
+highlight1Title: 4개의 콘텐츠 영역
+highlight1Description: 코딩 기록, 일상, 푸딩이, 포트폴리오를 한 사이트에 모았습니다.
+highlight2Title: Markdown 자동 페이지 생성
+highlight2Description: 새 글 파일을 추가하면 목록과 상세 페이지가 같은 디자인으로 만들어집니다.
+highlight3Title: GitHub·Cloudflare 배포
+highlight3Description: 작성한 글을 저장하고 인터넷에 공개하는 흐름을 직접 운영합니다.
+highlight4Title: 검색 기반 완성
+highlight4Description: Google Search Console과 사이트맵을 연결해 검색엔진이 글을 발견할 수 있게 했습니다.
+process1Label: PLAN
+process1Title: 기록의 목적을 정했습니다
+process1Description: 공부 과정과 일상을 자유롭게 남기면서 포트폴리오로도 활용할 방향을 정했습니다.
+process2Label: DESIGN
+process2Title: 보이는 순서를 설계했습니다
+process2Description: 검정, 아이보리, 노랑을 중심으로 색감과 메인 섹션의 순서를 결정했습니다.
+process3Label: BUILD
+process3Title: 기록이 자동으로 연결되게 만들었습니다
+process3Description: Next.js와 TypeScript로 Markdown 글, 이미지, 태그가 화면에 나타나는 구조를 만들었습니다.
+process4Label: PUBLISH
+process4Title: 직접 운영할 수 있게 연결했습니다
+process4Description: GitHub와 Cloudflare를 연결하고 사이트맵과 Search Console까지 설정했습니다.
+gallery1Image: obsidian-portfolio-frontmatter-properties.png
+gallery1Alt: 옵시디언에서 프로젝트 속성을 작성한 화면
 ---
 # 어려웠던 점과 해결
 

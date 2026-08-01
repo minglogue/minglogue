@@ -81,21 +81,52 @@ function resolveMedia(fileName: string) {
   return mediaPath ? mediaFiles[mediaPath] : null;
 }
 
+function numberedHighlights(frontmatter: string) {
+  return Array.from({ length: 8 }, (_, index) => index + 1)
+    .map((number) => ({
+      title: scalar(frontmatter, `highlight${number}Title`),
+      description: scalar(frontmatter, `highlight${number}Description`),
+    }))
+    .filter((item) => item.title);
+}
+
+function numberedProcess(frontmatter: string) {
+  return Array.from({ length: 8 }, (_, index) => index + 1)
+    .map((number) => ({
+      label: scalar(frontmatter, `process${number}Label`),
+      title: scalar(frontmatter, `process${number}Title`),
+      description: scalar(frontmatter, `process${number}Description`),
+    }))
+    .filter((item) => item.title);
+}
+
+function numberedGallery(frontmatter: string) {
+  return Array.from({ length: 8 }, (_, index) => index + 1).flatMap(
+    (number) => {
+      const fileName = scalar(frontmatter, `gallery${number}Image`);
+      const alt = scalar(frontmatter, `gallery${number}Alt`);
+      const src = resolveMedia(fileName);
+
+      return src ? [{ src, alt: alt || fileName }] : [];
+    },
+  );
+}
+
 function parseProject(path: string, raw: string): PortfolioProject {
   const frontmatterMatch = raw.match(/^---\n([\s\S]*?)\n---\n?/);
   const frontmatter = frontmatterMatch?.[1] ?? "";
   const coverName = scalar(frontmatter, "cover").replace(/^\.\//, "");
-  const highlights = list(frontmatter, "highlights").map((item) => {
+  const legacyHighlights = list(frontmatter, "highlights").map((item) => {
     const [title, description = ""] = item.split("|").map((part) => part.trim());
     return { title, description };
   });
-  const process = list(frontmatter, "process").map((item) => {
+  const legacyProcess = list(frontmatter, "process").map((item) => {
     const [label, title = "", description = ""] = item
       .split("|")
       .map((part) => part.trim());
     return { label, title, description };
   });
-  const gallery = list(frontmatter, "gallery").flatMap((item) => {
+  const legacyGallery = list(frontmatter, "gallery").flatMap((item) => {
     const [fileName, alt = ""] = item.split("|").map((part) => part.trim());
     const src = resolveMedia(fileName);
     return src ? [{ src, alt: alt || fileName }] : [];
@@ -118,9 +149,15 @@ function parseProject(path: string, raw: string): PortfolioProject {
     solution: scalar(frontmatter, "solution"),
     result: scalar(frontmatter, "result"),
     users: scalar(frontmatter, "users"),
-    highlights,
-    process,
-    gallery,
+    highlights: numberedHighlights(frontmatter).length
+      ? numberedHighlights(frontmatter)
+      : legacyHighlights,
+    process: numberedProcess(frontmatter).length
+      ? numberedProcess(frontmatter)
+      : legacyProcess,
+    gallery: numberedGallery(frontmatter).length
+      ? numberedGallery(frontmatter)
+      : legacyGallery,
     content: raw.slice(frontmatterMatch?.[0].length ?? 0).trim(),
   };
 }

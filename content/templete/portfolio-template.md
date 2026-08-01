@@ -16,17 +16,26 @@ users: 이 프로젝트를 사용하는 사람
 problem: 이 프로젝트가 해결하려는 문제를 한 문장으로 작성합니다.
 solution: 문제를 어떤 방식으로 해결했는지 한 문장으로 작성합니다.
 result: 최종적으로 무엇이 달라졌는지 한 문장으로 작성합니다.
-highlights:
-  - 핵심 결과 이름|결과를 뒷받침하는 짧은 설명
-  - 핵심 결과 이름|결과를 뒷받침하는 짧은 설명
-process:
-  - PLAN|무엇을 정했나요?|프로젝트의 목적과 필요한 기능을 정한 과정을 작성합니다.
-  - DESIGN|어떻게 설계했나요?|화면과 정보의 순서를 설계한 과정을 작성합니다.
-  - BUILD|무엇을 만들었나요?|실제로 구현한 기능과 사용한 방법을 작성합니다.
-  - PUBLISH|어떻게 완성했나요?|배포, 적용, 검증 또는 사용자 전달 과정을 작성합니다.
-gallery:
-  - 첫번째이미지.png|첫 번째 이미지에 보이는 내용을 설명합니다.
-  - 두번째이미지.png|두 번째 이미지에 보이는 내용을 설명합니다.
+highlight1Title: 첫 번째 핵심 결과
+highlight1Description: 결과를 뒷받침하는 짧은 설명
+highlight2Title: 두 번째 핵심 결과
+highlight2Description: 결과를 뒷받침하는 짧은 설명
+process1Label: PLAN
+process1Title: 무엇을 정했나요?
+process1Description: 프로젝트의 목적과 필요한 기능을 정한 과정을 작성합니다.
+process2Label: DESIGN
+process2Title: 어떻게 설계했나요?
+process2Description: 화면과 정보의 순서를 설계한 과정을 작성합니다.
+process3Label: BUILD
+process3Title: 무엇을 만들었나요?
+process3Description: 실제로 구현한 기능과 사용한 방법을 작성합니다.
+process4Label: PUBLISH
+process4Title: 어떻게 완성했나요?
+process4Description: 배포, 적용, 검증 또는 사용자 전달 과정을 작성합니다.
+gallery1Image: 첫번째이미지.png
+gallery1Alt: 첫 번째 이미지에 보이는 내용을 설명합니다.
+gallery2Image: 두번째이미지.png
+gallery2Alt: 두 번째 이미지에 보이는 내용을 설명합니다.
 ---
 
 # 어려웠던 점과 해결
