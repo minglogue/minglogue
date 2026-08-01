@@ -17,8 +17,10 @@ published: true
 projectUrl: https://popcorn-kim-log.popcornkim58.workers.dev
 githubUrl: https://github.com/popcorn-kim/popcorn-kim-log
 users: 코딩 공부와 일상을 직접 기록하고 싶은 나
-gallery1Image: 스크린샷 2026-08-01 오후 1.45.13.png
+gallery1Image: blog-property-section.png
 gallery1Alt: 옵시디언에서 프로젝트 속성을 작성한 화면
+gallery2Image: blog-property-section.png
+gallery2Alt: 옵시디언에서 텍스트에 Markdown만 입력하면 자동으로 템플릿에 적용됨
 ---
 ## 프로젝트 요약
 
