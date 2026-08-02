@@ -37,7 +37,6 @@ export function SiteFooter() {
         >
           GitHub
         </a>
-        <Link href="/studio">Studio</Link>
         <Link href="/portfolio">Mingventory</Link>
         <Link href="/">홈으로 ↑</Link>
       </div>
