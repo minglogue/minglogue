@@ -13,7 +13,6 @@ export default function Home() {
   const posts = codingPosts.slice(0, 5);
   const dailyNotes = getAllPosts("daily").slice(0, 5);
   const latestPudding = getPuddingPosts()[0];
-  const currentFocus = codingPosts[0]?.category ?? "첫 기록 준비 중";
   const latestLogNumber = codingPosts[0]?.slug.match(/^(\d{4})/)?.[1] ?? "0000";
 
   return (
@@ -46,7 +45,7 @@ export default function Home() {
         <div className="home-feed">
           <section>
             <Link className="section-heading section-heading-link" href="/coding">
-            <h2>RECENT CODING LOGS</h2>
+            <h2 className="pixel-copy">코딩기록보기</h2>
               <span>전체 보기 →</span>
             </Link>
             <div className="post-list">
@@ -63,7 +62,7 @@ export default function Home() {
 
           <section className="home-daily-section" id="daily">
             <Link className="section-heading section-heading-link" href="/daily">
-              <h2>DAILY NOTES</h2>
+              <h2 className="pixel-copy">일상구경하기</h2>
               <span>전체 보기 →</span>
             </Link>
             <div className="post-list">
@@ -79,28 +78,19 @@ export default function Home() {
           </section>
         </div>
 
-        <aside className="learning-panel">
-          <p className="panel-label">NOW LEARNING</p>
-          <pre aria-label="현재 공부하고 있는 내용"><code><span>const</span> popcorn = {"{"}
-{"\n"}  focus: &quot;{currentFocus}&quot;,
-{"\n"}  streak: {codingPosts.length},
-{"\n"}  mood: &quot;curious&quot;
-{"\n"}{"}"}</code></pre>
+        <aside className="pudding-home" id="pudding">
+          <img
+            className="pudding-avatar"
+            src="/pudding-avatar.png"
+            alt="크림색 몸에 갈색 귀와 분홍 코를 가진 푸딩이 픽셀 캐릭터"
+          />
+          <div>
+            <p className="panel-label">PUDDING&apos;S LATEST</p>
+            <h2 className="pixel-copy">푸딩이의 최신 근황</h2>
+            <p>{latestPudding?.content || "첫 번째 푸딩이 사진을 기다리고 있습니다."}</p>
+          </div>
+          <Link href="/pudding">사진 보러가기 <span>→</span></Link>
         </aside>
-      </section>
-
-      <section className="pudding-home page-shell" id="pudding">
-        <img
-          className="pudding-avatar"
-          src="/pudding-avatar.png"
-          alt="크림색 몸에 갈색 귀와 분홍 코를 가진 푸딩이 픽셀 캐릭터"
-        />
-        <div>
-          <p className="panel-label">PUDDING&apos;S LATEST</p>
-          <h2 className="pixel-copy">푸딩이의 최신 근황</h2>
-          <p>{latestPudding?.content || "첫 번째 푸딩이 사진을 기다리고 있습니다."}</p>
-        </div>
-        <Link href="/pudding">사진 보러가기 <span>→</span></Link>
       </section>
 
       <section className="home-profile-grid page-shell">
