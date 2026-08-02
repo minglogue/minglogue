@@ -1,5 +1,5 @@
 ---
-title: 내 기록창구 만들기
+title: 나만의 기록창구 만들기
 excerpt: Next.js와 Markdown으로 코딩 공부와 일상을 직접 작성하고 배포할 수 있도록 만든 개인 블로그 프로젝트
 period: 2026.07.27 ~ 진행 중
 role: 기획, 디자인 색감과 방향, 섹션 순서, AI와 함께 개발, 콘텐츠 작성
@@ -18,7 +18,7 @@ githubUrl: https://github.com/minglogue/minglogue
 users: 코딩 공부와 일상을 직접 기록하고 싶은 나
 gallery1Image: blog-property-section.png
 gallery1Alt: 옵시디언에서 프로젝트 속성을 작성한 화면
-gallery2Image: blog-property-section.png
+gallery2Image: blog-wirting-section.png
 gallery2Alt: 옵시디언에서 텍스트에 Markdown만 입력하면 자동으로 템플릿에 적용됨
 ---
 ## 프로젝트 요약
@@ -98,4 +98,4 @@ GitHub와 Cloudflare를 연결하고 Github가 업데이트되면 홈페이지�
 
 홈페이지를 하나 만들어보면서, 지피티에게 지금 한 과정을 나에게 설명해달라고 하며 구조를 이해하고자 노력했습니다. 직접 만들어본게 아니라서 부족한 점은 많지만 하나하나 코드를 보고 공부해 나갈 소재가 생겨서 좋았습니다.
 
-코딩과 데일리 페이지를 시작으로 푸딩이 갤러리, 포트폴리오 페이지를 지속적으로 개발하는 중입니다.
+IT공부와 데일리 페이지를 시작으로 푸딩이 갤러리, 포트폴리오 페이지를 지속적으로 개발하는 중입니다.
