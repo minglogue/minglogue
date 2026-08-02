@@ -119,7 +119,10 @@ export function getAllPosts(kind?: PostKind) {
   return Object.entries(markdownFiles)
     .map(([path, raw]) => parsePost(path, raw))
     .filter((post) => !kind || post.kind === kind)
-    .sort((a, b) => b.date.localeCompare(a.date));
+    .sort(
+      (a, b) =>
+        b.date.localeCompare(a.date) || b.slug.localeCompare(a.slug),
+    );
 }
 
 export function getPostBySlug(slug: string) {
