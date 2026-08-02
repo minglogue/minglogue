@@ -25,11 +25,7 @@ export default function Home() {
       <section className="hero page-shell" id="top">
         <div className="hero-copy">
           <p className="eyebrow">DESIGNER BY DAY · DEVELOPER IN PROGRESS</p>
-          <h1 className="pixel-copy">
-            구조가 궁금해서,
-            <br />
-            직접 <span>분해해 봅니다.</span>
-          </h1>
+          <h1 className="pixel-copy">IT공부<span>•</span>일상기록</h1>
           <p className="hero-intro">
             직접 해보고 실패한 모든 것을 기록합니다.
           </p>
@@ -48,7 +44,7 @@ export default function Home() {
         <div className="home-feed">
           <section>
             <Link className="section-heading section-heading-link" href="/coding">
-            <h2 className="pixel-copy">코딩기록보기</h2>
+            <h2 className="pixel-copy">공부기록보기</h2>
               <span>전체 보기 →</span>
             </Link>
             <div className="post-list">

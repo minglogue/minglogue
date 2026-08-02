@@ -12,7 +12,7 @@ export function SiteHeader() {
         Minglogue
       </Link>
       <nav className="main-nav" aria-label="주요 메뉴">
-        <Link href="/coding">Coding Logs</Link>
+        <Link href="/coding">Study Logs</Link>
         <Link href="/daily">Daily</Link>
         <Link href="/pudding">Pudding</Link>
         <Link href="/#badges">Badges</Link>

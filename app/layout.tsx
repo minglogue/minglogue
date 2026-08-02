@@ -22,13 +22,13 @@ export const metadata: Metadata = {
     template: "%s · Minglogue",
   },
   description:
-    "디자이너 밍띠의 코딩 공부, 일상, 밍벤토리 그리고 반려햄스터 푸딩이의 기록.",
+    "디자이너 밍띠의 IT 공부, 일상, 밍벤토리 그리고 반려햄스터 푸딩이의 기록.",
   authors: [{ name: "Mingddi (밍띠)" }],
   creator: "Mingddi (밍띠)",
   verification: {
     google: "i4V_1VFJOeMBtjfWj9t76I2cv_N8cCRWYF-iYpL0RtI",
   },
-  keywords: ["Minglogue", "밍글로그", "Mingddi", "밍띠", "Mingventory", "밍벤토리", "개발 블로그", "코딩 기록", "디자인", "Next.js"],
+  keywords: ["Minglogue", "밍글로그", "Mingddi", "밍띠", "Mingventory", "밍벤토리", "개발 블로그", "공부 기록", "IT 공부", "디자인", "Next.js"],
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
@@ -38,13 +38,13 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     siteName: "Minglogue",
     title: "Minglogue",
-    description: "구조가 궁금해서, 직접 분해해 봅니다.",
+    description: "IT공부•일상기록",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "Minglogue" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Minglogue",
-    description: "구조가 궁금해서, 직접 분해해 봅니다.",
+    description: "IT공부•일상기록",
     images: ["/og.png"],
   },
 };

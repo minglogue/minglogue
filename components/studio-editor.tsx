@@ -75,7 +75,7 @@ ${body}
                 setKind(event.target.value as "coding" | "daily")
               }
             >
-              <option value="coding">코딩 기록</option>
+              <option value="coding">공부 기록</option>
               <option value="daily">일상 기록</option>
             </select>
           </div>

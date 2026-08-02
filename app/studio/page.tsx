@@ -36,7 +36,7 @@ export default function StudioPage() {
             {posts.map((post) => (
               <article key={post.slug}>
                 <div>
-                  <span>{post.kind === "coding" ? "코딩" : "일상"}</span>
+                  <span>{post.kind === "coding" ? "공부" : "일상"}</span>
                   <h3>{post.title}</h3>
                   <time dateTime={post.date}>{formatPostDate(post.date)}</time>
                 </div>

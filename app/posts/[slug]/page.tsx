@@ -41,7 +41,7 @@ export default async function PostPage({ params }: PageProps) {
       <article className="post-page page-shell">
         <header className="post-page-header">
           <Link href={post.kind === "coding" ? "/coding" : "/daily"}>
-            ← {post.kind === "coding" ? "CODING LOGS" : "DAILY NOTES"}
+            ← {post.kind === "coding" ? "STUDY LOGS" : "DAILY NOTES"}
           </Link>
           <p className="post-page-category">{post.category}</p>
           <h1>{post.title}</h1>
