@@ -5,7 +5,7 @@ import { formatPostDate, getAllPosts } from "@/lib/posts";
 
 export const metadata: Metadata = {
   title: "Studio",
-  description: "PopcornKim's Logs의 Markdown 글 작성 공간.",
+  description: "Minglogue의 Markdown 글 작성 공간.",
   robots: { index: false, follow: false },
 };
 
@@ -17,7 +17,7 @@ export default function StudioPage() {
       <SiteHeader />
       <section className="studio-hero page-shell">
         <div>
-          <p className="eyebrow">POPCORN&apos;S STUDIO</p>
+          <p className="eyebrow">MINGDDI&apos;S STUDIO</p>
           <h1>글을 쓰고,<br /><span>Markdown으로 챙겨가기.</span></h1>
         </div>
         <p>

@@ -17,17 +17,17 @@ const jua = Jua({
 export const metadata: Metadata = {
   metadataBase: new URL("https://popcorn-kim-log.popcornkim58.workers.dev"),
   title: {
-    default: "PopcornKim's Logs",
-    template: "%s · PopcornKim's Logs",
+    default: "Minglogue",
+    template: "%s · Minglogue",
   },
   description:
-    "디자이너 팝콘의 코딩 공부, 일상, 포트폴리오 그리고 반려햄스터 푸딩이의 기록.",
-  authors: [{ name: "팝콘" }],
-  creator: "팝콘",
+    "디자이너 밍띠의 코딩 공부, 일상, 밍벤토리 그리고 반려햄스터 푸딩이의 기록.",
+  authors: [{ name: "Mingddi (밍띠)" }],
+  creator: "Mingddi (밍띠)",
   verification: {
     google: "i4V_1VFJOeMBtjfWj9t76I2cv_N8cCRWYF-iYpL0RtI",
   },
-  keywords: ["개발 블로그", "코딩 기록", "디자인", "Next.js", "팝콘"],
+  keywords: ["Minglogue", "밍글로그", "Mingddi", "밍띠", "Mingventory", "밍벤토리", "개발 블로그", "코딩 기록", "디자인", "Next.js"],
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
@@ -35,14 +35,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    siteName: "PopcornKim's Logs",
-    title: "PopcornKim's Logs",
+    siteName: "Minglogue",
+    title: "Minglogue",
     description: "구조가 궁금해서, 직접 분해해 봅니다.",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "PopcornKim's Logs" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Minglogue" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PopcornKim's Logs",
+    title: "Minglogue",
     description: "구조가 궁금해서, 직접 분해해 봅니다.",
     images: ["/og.png"],
   },

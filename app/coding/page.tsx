@@ -5,7 +5,7 @@ import { getAllPosts } from "@/lib/posts";
 
 export const metadata: Metadata = {
   title: "코딩 기록",
-  description: "팝콘이 직접 배우고 부딪히며 남긴 개발 공부 기록.",
+  description: "밍띠가 직접 배우고 부딪히며 남긴 개발 공부 기록.",
 };
 
 export default function CodingPage() {

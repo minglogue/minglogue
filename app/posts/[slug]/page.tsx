@@ -49,7 +49,7 @@ export default async function PostPage({ params }: PageProps) {
           <div className="post-page-meta">
             <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             <span>{post.readTime} 읽기</span>
-            <span>by 팝콘</span>
+            <span>by MINGDDI</span>
           </div>
         </header>
         <div className="markdown-body">

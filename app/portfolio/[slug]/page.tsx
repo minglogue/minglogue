@@ -42,7 +42,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
       <SiteHeader />
       <article className="portfolio-detail page-shell">
         <header className="portfolio-detail-header">
-          <Link href="/portfolio">← PORTFOLIO</Link>
+          <Link href="/portfolio">← MINGVENTORY</Link>
           <p className="eyebrow">PROJECT CASE STUDY</p>
           <h1 className="pixel-copy">{project.title}</h1>
           <p className="portfolio-detail-excerpt">{project.excerpt}</p>

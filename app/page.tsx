@@ -111,11 +111,11 @@ export default function Home() {
           <CredlyBadge />
         </section>
         <section className="portfolio-section" id="portfolio">
-          <p className="panel-label">SELECTED WORK</p>
+          <p className="panel-label">MINGVENTORY</p>
           <h2 className="pixel-copy">배운 것을 결과로 남깁니다.</h2>
           <p>프로젝트의 과정, 역할, 기여도를 기록합니다.</p>
           <Link href="/portfolio">
-            포트폴리오 보기 <Arrow />
+            밍벤토리 보기 <Arrow />
           </Link>
         </section>
       </section>

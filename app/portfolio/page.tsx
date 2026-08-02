@@ -4,8 +4,8 @@ import { Arrow, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { getAllProjects } from "@/lib/portfolio";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "팝콘이 직접 기획하고 만들며 배운 프로젝트를 소개합니다.",
+  title: "Mingventory",
+  description: "밍띠가 직접 기획하고 만들며 배운 프로젝트를 소개하는 밍벤토리입니다.",
 };
 
 export default function PortfolioPage() {
@@ -15,7 +15,7 @@ export default function PortfolioPage() {
     <main>
       <SiteHeader />
       <section className="portfolio-hero page-shell">
-        <p className="eyebrow">SELECTED WORK</p>
+        <p className="eyebrow">MINGVENTORY</p>
         <h1 className="pixel-copy">
           배운 것을 <span>결과로</span>
           <br />
