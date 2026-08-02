@@ -221,8 +221,44 @@ a { color: inherit; text-decoration: none; }
   font-family: "Galmuri11 Bold", var(--font-sans);
 }
 .badge-section > p:not(.panel-label), .portfolio-section > p:not(.panel-label) { font-size: 14px; line-height: 1.55; }
-.coming-label, .portfolio-section a { display: inline-block; margin-top: 28px; font: 700 11px var(--font-mono), monospace; }
+.coming-label, .portfolio-section .portfolio-more-link { display: inline-block; margin-top: 22px; font: 700 11px var(--font-mono), monospace; }
 .portfolio-section a { color: var(--yellow); }
+.home-featured-project {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1fr;
+  gap: 16px;
+  align-items: center;
+  margin-top: 22px;
+  padding: 10px;
+  color: var(--ink) !important;
+  background: var(--paper);
+  border: 1px solid var(--paper);
+}
+.home-featured-project:hover { border-color: var(--yellow); }
+.home-featured-project img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  display: block;
+  object-fit: cover;
+  object-position: top;
+}
+.home-featured-project > span { min-width: 0; }
+.home-featured-project strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.home-featured-project small {
+  display: block;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.55;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .credly-badge {
   min-height: 270px;
   display: flex;

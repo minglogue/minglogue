@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Arrow, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { CredlyBadge } from "@/components/credly-badge";
 import { getAllPosts } from "@/lib/posts";
+import { getAllProjects } from "@/lib/portfolio";
 import { getPuddingPosts } from "@/lib/pudding";
 
 function shortDate(date: string) {
@@ -13,6 +14,8 @@ export default function Home() {
   const posts = codingPosts.slice(0, 5);
   const dailyNotes = getAllPosts("daily").slice(0, 5);
   const latestPudding = getPuddingPosts()[0];
+  const projects = getAllProjects();
+  const featuredProject = projects.find((project) => project.featured) ?? projects[0];
   const latestLogNumber = codingPosts[0]?.slug.match(/^(\d{4})/)?.[1] ?? "0000";
 
   return (
@@ -104,7 +107,22 @@ export default function Home() {
           <p className="panel-label">MINGVENTORY</p>
           <h2 className="pixel-copy">배운 것을 결과로 남깁니다.</h2>
           <p>프로젝트의 과정, 역할, 기여도를 기록합니다.</p>
-          <Link href="/portfolio">
+          {featuredProject && (
+            <Link
+              className="home-featured-project"
+              href={`/portfolio/${featuredProject.slug}`}
+              aria-label={`${featuredProject.title} 대표 프로젝트 보기`}
+            >
+              {featuredProject.cover && (
+                <img src={featuredProject.cover} alt={`${featuredProject.title} 대표 화면`} />
+              )}
+              <span>
+                <strong>{featuredProject.title}</strong>
+                <small>{featuredProject.excerpt}</small>
+              </span>
+            </Link>
+          )}
+          <Link className="portfolio-more-link" href="/portfolio">
             밍벤토리 보기 <Arrow />
           </Link>
         </section>
