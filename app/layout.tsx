@@ -55,6 +55,18 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${geistMono.variable} ${jua.variable}`}>
         {children}
         <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-TG54HE2EZG"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-TG54HE2EZG');
+          `}
+        </Script>
+        <Script
           id="cloudflare-web-analytics"
           type="module"
           src="https://static.cloudflareinsights.com/beacon.min.js"
