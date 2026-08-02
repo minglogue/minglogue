@@ -1,6 +1,6 @@
 ---
 title: 채용공고와 나의 강/약점 비교
-excerpt: 제조 현장 문제 해결과 AI 자동화 개발자 채용공고를 비교하며 나의 강점과 부족한 경험을 분석
+excerpt: 채용공고를 비교하며 나의 강점과 부족한 경험을 분석
 date: 2026-07-31
 category: DAILY
 kind: daily
