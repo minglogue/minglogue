@@ -5,10 +5,9 @@ export type PuddingPost = {
   image: string | null;
   images: string[];
   content: string;
-  published: boolean;
 };
 
-const puddingMarkdownFiles = import.meta.glob("../content/pudding/*.md", {
+const puddingMarkdownFiles = import.meta.glob("../content/pudding/published/*.md", {
   eager: true,
   import: "default",
   query: "?raw",
@@ -71,13 +70,11 @@ function parsePuddingFile(path: string, raw: string): PuddingPost {
       .replace(/!\[\[[^\]]+\]\]/g, "")
       .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
       .trim(),
-    published: scalar("published") !== "false",
   };
 }
 
 export function getPuddingPosts() {
   return Object.entries(puddingMarkdownFiles)
     .map(([path, raw]) => parsePuddingFile(path, raw))
-    .filter((post) => post.published)
     .sort((a, b) => b.date.localeCompare(a.date));
 }

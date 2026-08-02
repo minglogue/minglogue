@@ -30,7 +30,6 @@ date: "${date}"
 category: "${category.replaceAll('"', '\\"')}"
 kind: "${kind}"
 readTime: "3분"
-published: true
 ---
 
 ${body}

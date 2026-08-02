@@ -5,7 +5,6 @@ date: 2026-07-27
 category: WEDDING
 kind: daily
 readTime: 3분
-published: true
 tags:
   - wedding
 ---

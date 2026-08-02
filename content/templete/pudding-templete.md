@@ -3,7 +3,6 @@ title: "{{title}}"
 date: "{{date:YYYY-MM-DD}}"
 tags:
   - 푸딩이
-published: true
 ---
 
 사진에 관한 설명을 자유롭게 작성합니다.

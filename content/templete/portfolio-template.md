@@ -9,7 +9,6 @@ tools:
   - TypeScript
 cover: 대표이미지.png
 featured: false
-published: false
 projectUrl: https://example.com
 githubUrl: https://github.com/example/project
 users: 이 프로젝트를 사용하는 사람

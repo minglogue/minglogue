@@ -9,12 +9,14 @@ export type Post = {
   tags: string[];
   kind: PostKind;
   readTime: string;
-  published: boolean;
   content: string;
 };
 
 const markdownFiles = import.meta.glob(
-  ["../content/coding/*.md", "../content/daily/*.md"],
+  [
+    "../content/coding/published/*.md",
+    "../content/daily/published/*.md",
+  ],
   {
     eager: true,
     import: "default",
@@ -109,7 +111,6 @@ function parsePost(path: string, raw: string): Post {
     tags: parseTags(raw),
     kind: data.kind === "daily" ? "daily" : "coding",
     readTime: String(data.readTime ?? "3분"),
-    published: data.published !== "false",
     content,
   };
 }
@@ -117,7 +118,7 @@ function parsePost(path: string, raw: string): Post {
 export function getAllPosts(kind?: PostKind) {
   return Object.entries(markdownFiles)
     .map(([path, raw]) => parsePost(path, raw))
-    .filter((post) => post.published && (!kind || post.kind === kind))
+    .filter((post) => !kind || post.kind === kind)
     .sort((a, b) => b.date.localeCompare(a.date));
 }
 

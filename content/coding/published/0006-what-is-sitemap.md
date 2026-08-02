@@ -7,7 +7,6 @@ kind: coding
 readTime: 10분
 tags:
   - homepage
-published: true
 ---
 # 사이트맵이란 무엇일까?
 

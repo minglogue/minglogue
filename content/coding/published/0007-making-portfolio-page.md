@@ -7,7 +7,6 @@ kind: coding
 readTime: 5분
 tags:
   - homepage
-published: true
 ---
 # 개인 블로그 안에 포트폴리오 페이지 만들기
 

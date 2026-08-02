@@ -8,7 +8,6 @@ export type PortfolioProject = {
   tools: string[];
   cover: string | null;
   featured: boolean;
-  published: boolean;
   projectUrl: string;
   githubUrl: string;
   problem: string;
@@ -37,7 +36,7 @@ export type PortfolioGalleryImage = {
   alt: string;
 };
 
-const projectFiles = import.meta.glob("../content/portfolio/*.md", {
+const projectFiles = import.meta.glob("../content/portfolio/published/*.md", {
   eager: true,
   import: "default",
   query: "?raw",
@@ -202,7 +201,6 @@ function parseProject(path: string, raw: string): PortfolioProject {
     tools: list(frontmatter, "tools"),
     cover: resolveMedia(coverName),
     featured: scalar(frontmatter, "featured") === "true",
-    published: scalar(frontmatter, "published") !== "false",
     projectUrl: scalar(frontmatter, "projectUrl"),
     githubUrl: scalar(frontmatter, "githubUrl"),
     problem: overview["문제"] || scalar(frontmatter, "problem"),
@@ -229,7 +227,6 @@ function parseProject(path: string, raw: string): PortfolioProject {
 export function getAllProjects() {
   return Object.entries(projectFiles)
     .map(([path, raw]) => parseProject(path, raw))
-    .filter((project) => project.published)
     .sort((a, b) => Number(b.featured) - Number(a.featured));
 }
 

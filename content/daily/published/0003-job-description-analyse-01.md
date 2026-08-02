@@ -5,7 +5,6 @@ date: 2026-07-31
 category: DAILY
 kind: daily
 readTime: 10분
-published: true
 tags:
   - jd
 ---

@@ -5,7 +5,6 @@ date: 2026-07-30
 category: NEXT.JS
 kind: coding
 readTime: 7분
-published: true
 tags:
   - homepage
 ---

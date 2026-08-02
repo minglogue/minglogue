@@ -7,7 +7,6 @@ kind: coding
 readTime: 5분
 tags:
   - homepage
-published: true
 ---
 
 # 무엇을 만들었나요?

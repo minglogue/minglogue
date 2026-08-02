@@ -7,7 +7,6 @@ kind: daily
 readTime: 3분
 tags:
   - Certification
-published: true
 ---
 
 ## 기억하고 싶은 장면
