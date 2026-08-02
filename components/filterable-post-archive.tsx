@@ -62,7 +62,7 @@ export function FilterablePostArchive({
           <h2>{selectedTag === "all" ? heading : `#${selectedTag}`}</h2>
           <span>{visiblePosts.length}개의 기록</span>
         </div>
-        <PostList posts={visiblePosts} />
+        <PostList posts={visiblePosts} allPosts={posts} />
         {visiblePosts.length === 0 && (
           <p className="archive-empty">이 태그로 작성된 기록이 아직 없습니다.</p>
         )}

@@ -1,13 +1,25 @@
 import Link from "next/link";
 import { formatPostDate, type Post } from "@/lib/posts";
 
-export function PostList({ posts }: { posts: Post[] }) {
+export function PostList({
+  posts,
+  allPosts = posts,
+}: {
+  posts: Post[];
+  allPosts?: Post[];
+}) {
+  const chronologicalPosts = [...allPosts].sort(
+    (a, b) => a.date.localeCompare(b.date) || a.slug.localeCompare(b.slug),
+  );
+
   return (
     <div className="archive-list">
-      {posts.map((post, index) => (
+      {posts.map((post) => (
         <article className="archive-row" key={post.slug}>
           <span className="archive-number">
-            {String(index + 1).padStart(2, "0")}
+            {String(
+              chronologicalPosts.findIndex((item) => item.slug === post.slug) + 1,
+            ).padStart(2, "0")}
           </span>
           <div>
             <h2>
