@@ -16,7 +16,7 @@ const jua = Jua({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://popcorn-kim-log.popcornkim58.workers.dev"),
+  metadataBase: new URL("https://minglogue.popcornkim58.workers.dev"),
   title: {
     default: "Minglogue",
     template: "%s · Minglogue",
