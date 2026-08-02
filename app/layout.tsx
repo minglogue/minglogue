@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Jua } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -53,6 +54,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="ko">
       <body className={`${geistMono.variable} ${jua.variable}`}>
         {children}
+        <Script
+          id="cloudflare-web-analytics"
+          type="module"
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token":"7e8f0dc18db3493fa16da3fd08c0cc83"}'
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
