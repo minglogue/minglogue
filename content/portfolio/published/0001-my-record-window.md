@@ -14,7 +14,7 @@ tools:
 cover: blog-homepage-hero.png
 featured: true
 projectUrl: https://minglogue.popcornkim58.workers.dev
-githubUrl: https://github.com/popcorn-kim/minglogue
+githubUrl: https://github.com/minglogue/minglogue
 users: 코딩 공부와 일상을 직접 기록하고 싶은 나
 gallery1Image: blog-property-section.png
 gallery1Alt: 옵시디언에서 프로젝트 속성을 작성한 화면

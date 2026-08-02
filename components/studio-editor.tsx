@@ -123,7 +123,7 @@ ${body}
             .md 내려받기
           </button>
           <a
-            href={`https://github.com/popcorn-kim/minglogue/tree/main/content/${kind}`}
+            href={`https://github.com/minglogue/minglogue/tree/main/content/${kind}`}
             target="_blank"
             rel="noreferrer"
           >

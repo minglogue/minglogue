@@ -45,7 +45,7 @@ export default function StudioPage() {
                     글 보기
                   </a>
                   <a
-                    href={`https://github.com/popcorn-kim/minglogue/edit/main/content/${post.kind}/${post.slug}.md`}
+                    href={`https://github.com/minglogue/minglogue/edit/main/content/${post.kind}/${post.slug}.md`}
                     target="_blank"
                     rel="noreferrer"
                   >

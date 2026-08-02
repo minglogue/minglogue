@@ -31,7 +31,7 @@ export function SiteFooter() {
       </div>
       <div className="footer-links">
         <a
-          href="https://github.com/popcorn-kim/minglogue"
+          href="https://github.com/minglogue/minglogue"
           target="_blank"
           rel="noreferrer"
         >
