@@ -16,7 +16,7 @@ const jua = Jua({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://minglogue.popcornkim58.workers.dev"),
+  metadataBase: new URL("https://blog.minglogue.workers.dev"),
   title: {
     default: "Minglogue",
     template: "%s · Minglogue",

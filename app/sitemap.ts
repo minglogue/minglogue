@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
 import { getAllProjects } from "@/lib/portfolio";
 
-const siteUrl = "https://minglogue.popcornkim58.workers.dev";
+const siteUrl = "https://blog.minglogue.workers.dev";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const postPages = getAllPosts().map((post) => ({

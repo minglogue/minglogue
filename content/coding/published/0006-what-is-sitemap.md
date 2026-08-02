@@ -34,7 +34,7 @@ tags:
 내 홈페이지의 사이트맵 주소는 다음과 같다.
 
 ```
-https://minglogue.popcornkim58.workers.dev/sitemap.xml
+https://blog.minglogue.workers.dev/sitemap.xml
 ```
 
 사이트맵 안에는 페이지 주소와 수정 날짜 등이 기록된다.
@@ -122,13 +122,13 @@ Google은 이를 홈페이지 주소와 합쳐 전체 사이트맵 주소를 확
 
 ```
 홈페이지 주소
-https://minglogue.popcornkim58.workers.dev/
+https://blog.minglogue.workers.dev/
 
 입력한 주소
 sitemap.xml
 
 최종 주소
-https://minglogue.popcornkim58.workers.dev/sitemap.xml
+https://blog.minglogue.workers.dev/sitemap.xml
 ```
 
 ## 사이트맵이 있으면 무조건 검색될까?

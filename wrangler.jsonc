@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "minglogue",
+  "name": "blog",
   "compatibility_date": "2026-07-28",
   "main": "./worker/index.ts",
   "assets": {
