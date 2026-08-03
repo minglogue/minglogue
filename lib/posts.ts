@@ -31,7 +31,8 @@ const mediaFiles = import.meta.glob("../content/media/*", {
 }) as Record<string, string>;
 
 function resolveObsidianImages(content: string) {
-  return content.replace(/!\[\[([^\]]+)\]\]/g, (original, fileName: string) => {
+  return content.replace(/!\[\[([^\]]+)\]\]/g, (original, target: string) => {
+    const fileName = target.split("|", 1)[0].trim();
     const mediaPath = Object.keys(mediaFiles).find(
       (path) => path.split("/").pop() === fileName,
     );
