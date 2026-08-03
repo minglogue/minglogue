@@ -12,7 +12,7 @@ tools:
   - GitHub
   - Cloudflare
 cover: blog-homepage-hero.png
-featured: true
+featured: false
 projectUrl: https://blog.minglogue.workers.dev
 githubUrl: https://github.com/minglogue/minglogue
 users: 코딩 공부와 일상을 직접 기록하고 싶은 나
