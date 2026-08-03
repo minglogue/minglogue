@@ -30,11 +30,8 @@ export const metadata: Metadata = {
   },
   keywords: ["Minglogue", "밍글로그", "Mingddi", "밍띠", "Mingventory", "밍벤토리", "개발 블로그", "공부 기록", "IT 공부", "디자인", "Next.js"],
   icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
-    ],
-    shortcut: "/favicon-32.png",
+    icon: [{ url: "/favicon-v2.png", type: "image/png", sizes: "32x32" }],
+    shortcut: "/favicon-v2.png",
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
     other: [{ rel: "mask-icon", url: "/safari-pinned-tab.svg", color: "#171717" }],
   },
