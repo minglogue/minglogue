@@ -38,10 +38,6 @@ Google Apps Script와 조건부 서식을 이용해 시간 자동 기록, 예정
 
 다만 이 변화는 시트 개선만의 단독 효과로 검증한 수치가 아닙니다. 당일 고객 수, 시술 종류, 인력 배치 등 여러 운영 조건이 함께 작용했으며, 이 프로젝트는 진행 상황을 공유하고 병목을 빠르게 발견하는 데 기여했습니다.
 
-![[example-arrangement-sheets02.png]]
-
-![[example-arrangement-sheets03.png]]
-![[example-arrangement-sheets01.png]]
 ## 핵심 결과
 
 ### 통합 | 분산된 진행 정보를 한 화면으로 통합
@@ -99,6 +95,11 @@ Google Apps Script로 시간 자동 기록과 예정 시간 계산 기능을 만
 - 필수 정보 누락 경고
 - 같은 고객의 여러 시술을 구분하는 시각적 구조
 - 여러 팀이 동시에 확인할 수 있는 공용 진행 화면
+
+![[example-arrangement-sheets02.png]]
+
+![[example-arrangement-sheets03.png]]
+![[example-arrangement-sheets01.png]]
 
 # 어려웠던 점과 해결
 
