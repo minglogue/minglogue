@@ -17,7 +17,7 @@ export default function DailyPage() {
       <section className="archive-hero daily-archive-hero page-shell">
         <p className="eyebrow">DAILY NOTES</p>
         <h1 className="pixel-copy">
-          코딩 외의 <span>모든 이야기</span>
+          일상<span>이야기</span>
         </h1>
         <p>공부와 디자인 사이에서 발견한 생각과 일상의 조각입니다.</p>
       </section>

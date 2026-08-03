@@ -17,7 +17,7 @@ export default function CodingPage() {
       <section className="archive-hero page-shell">
         <p className="eyebrow">STUDY LOGS</p>
         <h1 className="pixel-copy">
-          분해해 본 <span>후기</span>
+          궁금했던 <span>것들</span>
         </h1>
         <p>
           외워서 설명하기보다 직접 만들고 망가뜨리며 알게 된 것들을
