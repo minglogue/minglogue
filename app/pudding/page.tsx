@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { formatPostDate } from "@/lib/posts";
 import { getPuddingPosts } from "@/lib/pudding";
+import { ZoomableImage } from "@/components/zoomable-image";
 
 export const metadata: Metadata = {
   title: "푸딩이의 최신 근황",
@@ -45,7 +46,7 @@ export default function PuddingPage() {
             {moments.map((post) => (
               <article className="pudding-card" key={post.momentKey}>
                 <div className={`pudding-photo${post.image ? "" : " is-placeholder"}`}>
-                  <img
+                  <ZoomableImage
                     src={post.image ?? "/pudding-avatar.png"}
                     alt={post.tags.length ? `푸딩이: ${post.tags.join(", ")}` : "푸딩이 사진"}
                   />

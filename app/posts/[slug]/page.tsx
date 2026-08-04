@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { MarkdownImage } from "@/components/zoomable-image";
 import { formatPostDate, getPostBySlug } from "@/lib/posts";
 
 type PageProps = {
@@ -56,6 +57,7 @@ export default async function PostPage({ params }: PageProps) {
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeHighlight]}
+            components={{ img: MarkdownImage }}
           >
             {post.content}
           </ReactMarkdown>

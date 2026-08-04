@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Arrow, SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { MarkdownImage, ZoomableImage } from "@/components/zoomable-image";
 import { getProjectBySlug } from "@/lib/portfolio";
 
 type PageProps = {
@@ -82,7 +83,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
 
         {project.cover && (
           <figure className="portfolio-detail-cover">
-            <img src={project.cover} alt={`${project.title} 대표 화면`} />
+            <ZoomableImage src={project.cover} alt={`${project.title} 대표 화면`} />
           </figure>
         )}
 
@@ -174,7 +175,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
               <div className="portfolio-gallery">
                 {project.gallery.map((image, index) => (
                   <figure key={`${image.src}-${index}`}>
-                    <img src={image.src} alt={image.alt} />
+                    <ZoomableImage src={image.src} alt={image.alt} />
                     <figcaption>{image.alt}</figcaption>
                   </figure>
                 ))}
@@ -189,7 +190,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
                 <h2>조금 더 자세한 기록</h2>
               </div>
               <div className="markdown-body portfolio-markdown">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ img: MarkdownImage }}>
                   {project.content}
                 </ReactMarkdown>
               </div>
