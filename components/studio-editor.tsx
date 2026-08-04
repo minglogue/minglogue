@@ -15,6 +15,8 @@ type StudioDraft = {
   tags: string;
   body: string;
   date: string;
+  markdown?: string;
+  updatedAt?: string;
 };
 
 type CompressedImage = {
@@ -28,7 +30,6 @@ type CompressedImage = {
   height: number;
 };
 
-const STORAGE_KEY = "minglogue-studio-draft-v2";
 const TEMPLATES: Record<PostKind, string> = {
   coding: `# 궁금했던 것
 
@@ -173,6 +174,8 @@ export function StudioEditor() {
   const [date, setDate] = useState(today);
   const [message, setMessage] = useState("");
   const [isReady, setIsReady] = useState(false);
+  const [cloudPosts, setCloudPosts] = useState<StudioDraft[]>([]);
+  const [isSaving, setIsSaving] = useState(false);
   const [images, setImages] = useState<CompressedImage[]>([]);
   const [isCompressing, setIsCompressing] = useState(false);
   const bodyField = useRef<HTMLTextAreaElement>(null);
@@ -236,45 +239,21 @@ ${body}
 `;
   }, [body, category, date, excerpt, kind, readMinutes, safeSlug, tagList, title]);
 
-  useEffect(() => {
+  async function refreshCloudPosts() {
     try {
-      const saved = window.localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const draft = JSON.parse(saved) as Partial<StudioDraft>;
-        setTitle(draft.title ?? "");
-        setSlug(draft.slug ?? "");
-        setKind(
-          draft.kind && ["coding", "daily", "portfolio", "pudding"].includes(draft.kind)
-            ? draft.kind
-            : "coding",
-        );
-        setStatus(draft.status === "published" ? "published" : "drafts");
-        setCategory(draft.category ?? "NEXT.JS");
-        setExcerpt(draft.excerpt ?? "");
-        setTags(draft.tags ?? "");
-        setBody(draft.body ?? INITIAL_BODY);
-        setDate(draft.date ?? today());
-        setMessage("이 기기에 저장된 초안을 불러왔어요.");
-      }
-    } catch {
-      setMessage("저장된 초안을 읽지 못했어요. 새 글로 시작합니다.");
+      const response = await fetch("/api/studio/posts", { cache: "no-store" });
+      const result = await response.json() as { posts?: StudioDraft[]; error?: string };
+      if (!response.ok) throw new Error(result.error || "R2의 글 목록을 불러오지 못했어요.");
+      setCloudPosts(result.posts ?? []);
+      setMessage("R2 저장소와 연결됐어요.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "R2 저장소에 연결하지 못했어요.");
     } finally {
       setIsReady(true);
     }
-  }, []);
+  }
 
-  useEffect(() => {
-    if (!isReady) return;
-
-    const draft: StudioDraft = {
-      title, slug, kind, status, category, excerpt, tags, body, date,
-    };
-    const timer = window.setTimeout(() => {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
-    }, 350);
-
-    return () => window.clearTimeout(timer);
-  }, [body, category, date, excerpt, isReady, kind, slug, status, tags, title]);
+  useEffect(() => { void refreshCloudPosts(); }, []);
 
   useEffect(() => {
     imagesRef.current = images;
@@ -317,6 +296,60 @@ ${body}
     setMessage(`${image.name}을 내려받았어요. GitHub의 content/media에 올리면 됩니다.`);
   }
 
+  function loadPost(post: StudioDraft) {
+    if (title || body !== INITIAL_BODY) {
+      if (!window.confirm(`현재 화면을 닫고 ‘${post.title}’ 글을 불러올까요?`)) return;
+    }
+    setTitle(post.title);
+    setSlug(post.slug);
+    setKind(post.kind);
+    setStatus(post.status);
+    setCategory(post.category);
+    setExcerpt(post.excerpt);
+    setTags(post.tags);
+    setBody(post.body);
+    setDate(post.date);
+    setMessage(`‘${post.title}’을 R2에서 불러왔어요.`);
+  }
+
+  async function saveToCloud() {
+    if (!title.trim() || !body.trim()) {
+      setMessage("제목과 본문을 먼저 작성해주세요.");
+      return;
+    }
+    setIsSaving(true);
+    try {
+      for (const image of images) {
+        const imageResponse = await fetch(
+          `/api/studio/media/${encodeURIComponent(kind)}/${encodeURIComponent(safeSlug)}/${encodeURIComponent(image.name)}`,
+          { method: "PUT", headers: { "content-type": "image/webp" }, body: image.blob },
+        );
+        if (!imageResponse.ok) throw new Error(`${image.name} 저장에 실패했어요.`);
+      }
+      const response = await fetch(
+        `/api/studio/posts/${encodeURIComponent(kind)}/${encodeURIComponent(safeSlug)}`,
+        {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            title, slug: safeSlug, kind, status, category, excerpt, tags, body, date, markdown,
+            updatedAt: new Date().toISOString(),
+          }),
+        },
+      );
+      const result = await response.json() as { error?: string };
+      if (!response.ok) throw new Error(result.error || "R2에 저장하지 못했어요.");
+      setSlug(safeSlug);
+      setImages([]);
+      await refreshCloudPosts();
+      setMessage(status === "published" ? "R2에 저장하고 공개 상태로 바꿨어요." : "R2에 비공개 초안으로 저장했어요.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "R2에 저장하지 못했어요.");
+    } finally {
+      setIsSaving(false);
+    }
+  }
+
   function changeKind(nextKind: PostKind) {
     const canReplace = body === TEMPLATES[kind] || body.trim() === "" ||
       window.confirm("현재 본문을 선택한 글 템플릿으로 바꿀까요?");
@@ -356,8 +389,7 @@ ${body}
   }
 
   function resetDraft() {
-    if (!window.confirm("이 기기에 저장된 작성 내용을 모두 비울까요?")) return;
-    window.localStorage.removeItem(STORAGE_KEY);
+    if (!window.confirm("현재 편집 화면을 비우고 새 글을 시작할까요?")) return;
     setTitle("");
     setSlug("");
     setKind("coding");
@@ -374,8 +406,8 @@ ${body}
     <div className="studio-workspace" id="new-post">
       <div className="studio-toolbar">
         <div>
-          <p className="panel-label">NEW MARKDOWN</p>
-          <strong>{isReady ? "이 기기에 자동 저장 중" : "초안 불러오는 중"}</strong>
+          <p className="panel-label">R2 CONTENT STUDIO</p>
+          <strong>{isReady ? "클라우드 원본 편집기" : "R2 연결 중"}</strong>
         </div>
         <div className="studio-stats" aria-label="글 통계">
           <span>{characterCount.toLocaleString("ko-KR")}자</span>
@@ -385,6 +417,24 @@ ${body}
 
       <div className="studio-grid">
         <section className="studio-form" aria-label="Markdown 글 작성">
+          <div className="studio-field">
+            <label htmlFor="studio-cloud-post">R2에 저장된 글</label>
+            <select
+              id="studio-cloud-post"
+              value=""
+              onChange={(event) => {
+                const post = cloudPosts.find((item) => `${item.kind}/${item.slug}` === event.target.value);
+                if (post) loadPost(post);
+              }}
+            >
+              <option value="">새 글 작성 · 저장된 글 {cloudPosts.length}개</option>
+              {cloudPosts.map((post) => (
+                <option key={`${post.kind}/${post.slug}`} value={`${post.kind}/${post.slug}`}>
+                  {post.status === "published" ? "공개" : "초안"} · {post.title}
+                </option>
+              ))}
+            </select>
+          </div>
           <div className="studio-field">
             <label htmlFor="studio-title">제목</label>
             <input
@@ -487,17 +537,20 @@ ${body}
             )}
           </div>
           <div className="studio-actions">
+            <button type="button" disabled={isSaving} onClick={() => void saveToCloud()}>
+              {isSaving ? "R2에 저장 중…" : status === "published" ? "저장하고 게시" : "R2에 초안 저장"}
+            </button>
             <button type="button" onClick={copyMarkdown}>Markdown 복사</button>
             <button className="secondary-button" type="button" onClick={downloadMarkdown}>.md 내려받기</button>
-            <a href={githubFolderUrl} target="_blank" rel="noreferrer">GitHub 저장 폴더 ↗</a>
+            <a href="/api/studio/backup">iCloud용 글 백업 받기</a>
             <button className="plain-button" type="button" onClick={resetDraft}>새 글로 비우기</button>
           </div>
           {message && <p className="studio-message" role="status">{message}</p>}
           <p className="studio-publish-note">
             <strong>{status === "published" ? "공개 글" : "초안"}</strong>
             {status === "published"
-              ? "으로 GitHub에 저장하면 다음 배포부터 홈페이지에 나타납니다."
-              : "은 GitHub에 저장해도 홈페이지 글 목록에는 나타나지 않습니다."}
+              ? "으로 R2에 저장됩니다. 홈페이지 연결 전까지 기존 공개 글은 그대로 유지됩니다."
+              : "은 로그인한 밍띠만 스튜디오에서 불러올 수 있습니다."}
           </p>
         </section>
 

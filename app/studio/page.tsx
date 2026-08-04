@@ -21,9 +21,8 @@ export default function StudioPage() {
           <h1 className="pixel-copy"><span>쓰는 공간</span></h1>
         </div>
         <p>
-          휴대폰과 컴퓨터에서 블로그용 Markdown을 만들 수 있어요. 작성 중인
-          내용은 현재 기기에 자동 저장되고, 완성한 파일만 GitHub로 옮기면
-          됩니다.
+          휴대폰과 컴퓨터에서 같은 글을 불러와 쓰고, R2에 초안 또는 공개
+          상태로 저장하는 클라우드 편집 공간입니다.
         </p>
       </section>
       <section className="studio-content page-shell">
@@ -44,13 +43,7 @@ export default function StudioPage() {
                   <a href={`/posts/${post.slug}`} target="_blank" rel="noreferrer">
                     글 보기
                   </a>
-                  <a
-                    href={`https://github.com/minglogue/minglogue/edit/main/content/${post.kind}/published/${post.slug}.md`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    GitHub에서 수정 ↗
-                  </a>
+                  <a href="#new-post">스튜디오에서 새 방식으로 작성</a>
                 </div>
               </article>
             ))}
