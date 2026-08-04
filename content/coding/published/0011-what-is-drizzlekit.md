@@ -1,6 +1,6 @@
 ---
 title: Drizzle Kit란? TypeScript로 데이터베이스 구조 관리하기
-excerpt: 이 글에서 다룬 내용을 한 문장으로 요약합니다.
+excerpt: 데이터를 관리하다
 date: 2026-08-04
 category: NEXT.JS
 kind: coding
