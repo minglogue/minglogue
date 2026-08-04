@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Arrow() {
   return <span aria-hidden="true">↗</span>;
@@ -17,6 +18,7 @@ export function SiteHeader() {
         <Link href="/pudding">Pudding</Link>
         <Link href="/#badges">Badges</Link>
         <Link href="/portfolio">Mingventory</Link>
+        <ThemeToggle />
       </nav>
     </header>
   );

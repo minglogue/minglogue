@@ -58,6 +58,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="ko">
       <body className={`${geistMono.variable} ${jua.variable}`}>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`(function(){try{var saved=localStorage.getItem('minglogue-theme');var dark=saved?saved==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.dataset.theme=dark?'dark':'light';}catch(e){}})();`}
+        </Script>
         {children}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-TG54HE2EZG"
