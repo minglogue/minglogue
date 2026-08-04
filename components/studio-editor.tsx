@@ -259,7 +259,7 @@ ${body}
 
   async function refreshCloudPosts() {
     try {
-      const response = await fetch("/api/studio/posts", { cache: "no-store" });
+      const response = await fetch("/studio/api/studio/posts", { cache: "no-store" });
       const result = await response.json() as { posts?: StudioDraft[]; error?: string };
       if (!response.ok) throw new Error(result.error || "R2의 글 목록을 불러오지 못했어요.");
       setCloudPosts(result.posts ?? []);
@@ -339,13 +339,13 @@ ${body}
     try {
       for (const image of images) {
         const imageResponse = await fetch(
-          `/api/studio/media/${encodeURIComponent(kind)}/${encodeURIComponent(safeSlug)}/${encodeURIComponent(image.name)}`,
+          `/studio/api/studio/media/${encodeURIComponent(kind)}/${encodeURIComponent(safeSlug)}/${encodeURIComponent(image.name)}`,
           { method: "PUT", headers: { "content-type": "image/webp" }, body: image.blob },
         );
         if (!imageResponse.ok) throw new Error(`${image.name} 저장에 실패했어요.`);
       }
       const response = await fetch(
-        `/api/studio/posts/${encodeURIComponent(kind)}/${encodeURIComponent(safeSlug)}`,
+        `/studio/api/studio/posts/${encodeURIComponent(kind)}/${encodeURIComponent(safeSlug)}`,
         {
           method: "PUT",
           headers: { "content-type": "application/json" },
@@ -581,7 +581,7 @@ ${body}
             </button>
             <button type="button" onClick={copyMarkdown}>Markdown 복사</button>
             <button className="secondary-button" type="button" onClick={downloadMarkdown}>.md 내려받기</button>
-            <a href="/api/studio/backup">iCloud용 글 백업 받기</a>
+            <a href="/studio/api/studio/backup">iCloud용 글 백업 받기</a>
             <button className="plain-button" type="button" onClick={resetDraft}>새 글로 비우기</button>
           </div>
           {message && <p className="studio-message" role="status">{message}</p>}

@@ -151,10 +151,16 @@ async function servePublishedContent(env: Env, url: URL) {
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+    const studioApiUrl = new URL(url);
+    const studioApiPrefix = "/studio/api/studio";
+    const usesStudioSession = url.pathname.startsWith(`${studioApiPrefix}/`);
+    if (usesStudioSession) {
+      studioApiUrl.pathname = url.pathname.replace(studioApiPrefix, "/api/studio");
+    }
 
-    if (url.pathname.startsWith("/api/studio/")) {
+    if (url.pathname.startsWith("/api/studio/") || usesStudioSession) {
       try {
-        return await handleStudioApi(request, env, url);
+        return await handleStudioApi(request, env, usesStudioSession ? studioApiUrl : url);
       } catch (error) {
         console.error(JSON.stringify({ event: "studio_api_error", path: url.pathname, error: String(error) }));
         return json({ error: "저장소 요청을 처리하지 못했습니다." }, 500);
