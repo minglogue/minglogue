@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { StudioEditor } from "@/components/studio-editor";
 import { StudioPublicList } from "@/components/studio-public-list";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getPublishedR2Posts } from "@/lib/posts";
 
 export const metadata: Metadata = {
   title: "쓰는 공간",
@@ -10,8 +10,13 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function StudioPage() {
-  const posts = getAllPosts();
+export const dynamic = "force-dynamic";
+
+export default async function StudioPage() {
+  const localPosts = getAllPosts();
+  const r2Posts = await getPublishedR2Posts();
+  const posts = [...r2Posts, ...localPosts.filter((post) => !r2Posts.some((r2) => r2.slug === post.slug))]
+    .sort((a, b) => b.date.localeCompare(a.date));
 
   return (
     <main>
