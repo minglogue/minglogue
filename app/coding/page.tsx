@@ -1,20 +1,15 @@
 import type { Metadata } from "next";
 import { FilterablePostArchive } from "@/components/filterable-post-archive";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
-import { getAllPosts, getPublishedR2Posts } from "@/lib/posts";
+import { getAllPosts } from "@/lib/posts";
 
 export const metadata: Metadata = {
   title: "공부 기록",
   description: "밍띠가 직접 배우고 부딪히며 남긴 개발 공부 기록.",
 };
 
-export const dynamic = "force-dynamic";
-
-export default async function CodingPage() {
-  const localPosts = getAllPosts("coding");
-  const r2Posts = (await getPublishedR2Posts()).filter((post) => post.kind === "coding");
-  const posts = [...r2Posts, ...localPosts.filter((post) => !r2Posts.some((r2) => r2.slug === post.slug))]
-    .sort((a, b) => b.date.localeCompare(a.date));
+export default function CodingPage() {
+  const posts = getAllPosts("coding");
 
   return (
     <main>

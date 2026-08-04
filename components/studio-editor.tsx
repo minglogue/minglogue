@@ -543,6 +543,16 @@ ${body}
               기본 템플릿 다시 불러오기
             </button>
           </div>
+          <section className="studio-inline-preview" aria-label="글 미리보기">
+            <p className="panel-label">글 미리보기</p>
+            <article className="markdown-body studio-live-preview">
+              <h1>{title || "새 글 제목"}</h1>
+              {excerpt && <p className="post-page-excerpt">{excerpt}</p>}
+              <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+                {body}
+              </ReactMarkdown>
+            </article>
+          </section>
           <div className="studio-field">
             <label htmlFor="studio-images">사진</label>
             <label className="studio-image-picker" htmlFor="studio-images">
@@ -600,16 +610,6 @@ ${body}
           </p>
         </section>
 
-        <aside className="studio-preview">
-          <p className="panel-label">LIVE PREVIEW</p>
-          <article className="markdown-body studio-live-preview">
-            <h1>{title || "새 글 제목"}</h1>
-            {excerpt && <p className="post-page-excerpt">{excerpt}</p>}
-            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
-              {body}
-            </ReactMarkdown>
-          </article>
-        </aside>
       </div>
     </div>
   );
