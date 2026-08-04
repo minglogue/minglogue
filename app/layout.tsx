@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   verification: {
     google: "i4V_1VFJOeMBtjfWj9t76I2cv_N8cCRWYF-iYpL0RtI",
   },
+  other: {
+    "p:domain_verify": "742432cd3d556d84e8545d6f7be07abf",
+  },
   keywords: ["Minglogue", "밍글로그", "Mingddi", "밍띠", "Mingventory", "밍벤토리", "개발 블로그", "공부 기록", "IT 공부", "디자인", "Next.js"],
   icons: {
     icon: [{ url: "/favicon-v2.png", type: "image/png", sizes: "32x32" }],
