@@ -102,6 +102,7 @@ function parseTags(raw: string) {
 function parsePost(path: string, raw: string): Post {
   const { data, content } = parseFrontmatter(raw);
   const slug = path.split("/").pop()?.replace(/\.md$/, "") ?? "";
+  const automaticReadTime = `${Math.max(1, Math.ceil(content.replace(/\s/g, "").length / 500))}분`;
 
   return {
     slug,
@@ -111,7 +112,7 @@ function parsePost(path: string, raw: string): Post {
     category: String(data.category ?? "NOTE"),
     tags: parseTags(raw),
     kind: data.kind === "daily" ? "daily" : "coding",
-    readTime: String(data.readTime ?? "3분"),
+    readTime: String(data.readTime || automaticReadTime),
     content,
   };
 }
