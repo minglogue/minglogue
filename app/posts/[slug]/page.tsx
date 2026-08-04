@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { MarkdownImage } from "@/components/zoomable-image";
-import { R2PostPage } from "@/components/r2-post-page";
 import { formatPostDate, getPostBySlug } from "@/lib/posts";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
-
-export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -34,7 +32,9 @@ export default async function PostPage({ params }: PageProps) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
 
-  if (!post) return <main><SiteHeader /><R2PostPage slug={slug} /><SiteFooter /></main>;
+  if (!post) {
+    notFound();
+  }
 
   return (
     <main>

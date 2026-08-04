@@ -130,27 +130,6 @@ export function getPostBySlug(slug: string) {
   return getAllPosts().find((post) => post.slug === slug);
 }
 
-export async function getPublishedR2Posts(): Promise<Post[]> {
-  try {
-    const response = await fetch("https://blog.minglogue.workers.dev/api/public/posts", { cache: "no-store" });
-    if (!response.ok) return [];
-    const result = await response.json() as { posts?: Array<{ slug: string; title: string; excerpt: string; date: string; category: string; tags: string; kind: PostKind; body: string; }>; };
-    return (result.posts ?? []).map((post) => ({
-      slug: post.slug,
-      title: post.title,
-      excerpt: post.excerpt,
-      date: post.date,
-      category: post.category,
-      tags: post.tags.split(",").map((tag) => tag.trim()).filter(Boolean),
-      kind: post.kind,
-      readTime: `${Math.max(1, Math.ceil(post.body.replace(/\s/g, "").length / 500))}분`,
-      content: post.body,
-    }));
-  } catch {
-    return [];
-  }
-}
-
 export function formatPostDate(date: string) {
   const parsedDate = new Date(`${date}T00:00:00`);
 

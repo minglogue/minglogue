@@ -3,19 +3,6 @@
   "name": "blog",
   "compatibility_date": "2026-07-28",
   "main": "./worker/index.ts",
-  "r2_buckets": [
-    {
-      "binding": "CONTENT",
-      "bucket_name": "minglogue-content"
-    }
-  ],
-  "vars": {
-    "STUDIO_OWNER_EMAIL": "mingddijin@gmail.com"
-  },
-  "observability": {
-    "enabled": true,
-    "head_sampling_rate": 1
-  },
   "assets": {
     "directory": "dist/client",
     "not_found_handling": "none",

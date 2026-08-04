@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import type { Post } from "@/lib/posts";
 import { PostList } from "@/components/post-list";
 
@@ -14,38 +14,17 @@ export function FilterablePostArchive({
   posts,
 }: FilterablePostArchiveProps) {
   const [selectedTag, setSelectedTag] = useState("all");
-  const [r2Posts, setR2Posts] = useState<Post[]>([]);
-  useEffect(() => {
-    void fetch("/api/public/posts", { cache: "no-store" })
-      .then(async (response) => {
-        if (!response.ok) return [];
-        const result = await response.json() as { posts?: Array<{ slug: string; title: string; excerpt: string; date: string; category: string; tags: string; kind: Post["kind"]; body: string; }> };
-        return (result.posts ?? []).map((post): Post => ({
-          ...post,
-          tags: post.tags.split(",").map((tag) => tag.trim()).filter(Boolean),
-          readTime: `${Math.max(1, Math.ceil(post.body.replace(/\s/g, "").length / 500))}분`,
-          content: post.body,
-        }));
-      })
-      .then(setR2Posts)
-      .catch(() => setR2Posts([]));
-  }, []);
-  const allPosts = useMemo(
-    () => [...r2Posts, ...posts.filter((post) => !r2Posts.some((r2) => r2.slug === post.slug))]
-      .sort((a, b) => b.date.localeCompare(a.date)),
-    [posts, r2Posts],
-  );
   const tags = useMemo(
     () =>
-      [...new Set(allPosts.flatMap((post) => post.tags))].sort((a, b) =>
+      [...new Set(posts.flatMap((post) => post.tags))].sort((a, b) =>
         a.localeCompare(b, "ko"),
       ),
-    [allPosts],
+    [posts],
   );
   const visiblePosts =
     selectedTag === "all"
-      ? allPosts
-      : allPosts.filter((post) => post.tags.includes(selectedTag));
+      ? posts
+      : posts.filter((post) => post.tags.includes(selectedTag));
 
   return (
     <>
@@ -58,10 +37,10 @@ export function FilterablePostArchive({
             aria-pressed={selectedTag === "all"}
             onClick={() => setSelectedTag("all")}
           >
-            전체 <span>{allPosts.length}</span>
+            전체 <span>{posts.length}</span>
           </button>
           {tags.map((tag) => {
-            const count = allPosts.filter((post) => post.tags.includes(tag)).length;
+            const count = posts.filter((post) => post.tags.includes(tag)).length;
 
             return (
               <button
@@ -83,7 +62,7 @@ export function FilterablePostArchive({
           <h2>{selectedTag === "all" ? heading : `#${selectedTag}`}</h2>
           <span>{visiblePosts.length}개의 기록</span>
         </div>
-        <PostList posts={visiblePosts} allPosts={allPosts} />
+        <PostList posts={visiblePosts} allPosts={posts} />
         {visiblePosts.length === 0 && (
           <p className="archive-empty">이 태그로 작성된 기록이 아직 없습니다.</p>
         )}

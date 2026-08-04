@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Arrow, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { CredlyBadge } from "@/components/credly-badge";
-import { HomeR2PostLists } from "@/components/home-r2-post-lists";
 import { getAllPosts } from "@/lib/posts";
 import { getAllProjects } from "@/lib/portfolio";
 import { getPuddingPosts } from "@/lib/pudding";
@@ -12,9 +11,8 @@ function shortDate(date: string) {
 
 export default function Home() {
   const codingPosts = getAllPosts("coding");
-  const dailyPosts = getAllPosts("daily");
   const posts = codingPosts.slice(0, 5);
-  const dailyNotes = dailyPosts.slice(0, 5);
+  const dailyNotes = getAllPosts("daily").slice(0, 5);
   const latestPudding = getPuddingPosts()[0];
   const projects = getAllProjects();
   const featuredProject = projects.find((project) => project.featured) ?? projects[0];
@@ -43,7 +41,41 @@ export default function Home() {
       </section>
 
       <section className="content-grid page-shell" id="coding">
-        <HomeR2PostLists coding={codingPosts} daily={dailyNotes} />
+        <div className="home-feed">
+          <section>
+            <Link className="section-heading section-heading-link" href="/coding">
+            <h2 className="pixel-copy">공부기록보기</h2>
+              <span>전체 보기 →</span>
+            </Link>
+            <div className="post-list">
+              {posts.map((post) => (
+                <article className="post-row" key={post.title}>
+                  <div className="post-category">{post.category}</div>
+                  <h3><Link href={`/posts/${post.slug}`}>{post.title}</Link></h3>
+                  <p>{post.excerpt}</p>
+                  <time dateTime={post.date}>{shortDate(post.date)}</time>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="home-daily-section" id="daily">
+            <Link className="section-heading section-heading-link" href="/daily">
+              <h2 className="pixel-copy">일상구경하기</h2>
+              <span>전체 보기 →</span>
+            </Link>
+            <div className="post-list">
+              {dailyNotes.map((post) => (
+                <article className="post-row" key={post.slug}>
+                  <div className="post-category">{post.category}</div>
+                  <h3><Link href={`/posts/${post.slug}`}>{post.title}</Link></h3>
+                  <p>{post.excerpt}</p>
+                  <time dateTime={post.date}>{shortDate(post.date)}</time>
+                </article>
+              ))}
+            </div>
+          </section>
+        </div>
 
         <aside className="pudding-home" id="pudding">
           <img
