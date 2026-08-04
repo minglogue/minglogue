@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: "공부와 디자인 사이에서 건져 올린 밍띠의 일상 기록.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function DailyPage() {
   const localPosts = getAllPosts("daily");
   const r2Posts = (await getPublishedR2Posts()).filter((post) => post.kind === "daily");

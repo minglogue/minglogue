@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Arrow, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { CredlyBadge } from "@/components/credly-badge";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getPublishedR2Posts } from "@/lib/posts";
 import { getAllProjects } from "@/lib/portfolio";
 import { getPuddingPosts } from "@/lib/pudding";
 
@@ -9,10 +9,18 @@ function shortDate(date: string) {
   return date.slice(5).replace("-", ".");
 }
 
-export default function Home() {
-  const codingPosts = getAllPosts("coding");
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const localCodingPosts = getAllPosts("coding");
+  const localDailyPosts = getAllPosts("daily");
+  const r2Posts = await getPublishedR2Posts();
+  const codingPosts = [...r2Posts.filter((post) => post.kind === "coding"), ...localCodingPosts.filter((post) => !r2Posts.some((r2) => r2.slug === post.slug))]
+    .sort((a, b) => b.date.localeCompare(a.date));
+  const dailyPosts = [...r2Posts.filter((post) => post.kind === "daily"), ...localDailyPosts.filter((post) => !r2Posts.some((r2) => r2.slug === post.slug))]
+    .sort((a, b) => b.date.localeCompare(a.date));
   const posts = codingPosts.slice(0, 5);
-  const dailyNotes = getAllPosts("daily").slice(0, 5);
+  const dailyNotes = dailyPosts.slice(0, 5);
   const latestPudding = getPuddingPosts()[0];
   const projects = getAllProjects();
   const featuredProject = projects.find((project) => project.featured) ?? projects[0];

@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: "밍띠가 직접 배우고 부딪히며 남긴 개발 공부 기록.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function CodingPage() {
   const localPosts = getAllPosts("coding");
   const r2Posts = (await getPublishedR2Posts()).filter((post) => post.kind === "coding");
