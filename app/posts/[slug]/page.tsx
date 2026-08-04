@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { MarkdownImage } from "@/components/zoomable-image";
-import { formatPostDate, getPostBySlug } from "@/lib/posts";
+import { formatPostDate, getPostBySlug, getPublishedR2Posts } from "@/lib/posts";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -16,7 +16,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = getPostBySlug(slug) ?? (await getPublishedR2Posts()).find((item) => item.slug === slug);
 
   if (!post) {
     return { title: "글을 찾을 수 없습니다" };
@@ -30,7 +30,7 @@ export async function generateMetadata({
 
 export default async function PostPage({ params }: PageProps) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = getPostBySlug(slug) ?? (await getPublishedR2Posts()).find((item) => item.slug === slug);
 
   if (!post) {
     notFound();

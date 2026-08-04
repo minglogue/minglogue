@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
 import { FilterablePostArchive } from "@/components/filterable-post-archive";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getPublishedR2Posts } from "@/lib/posts";
 
 export const metadata: Metadata = {
   title: "일상 기록",
   description: "공부와 디자인 사이에서 건져 올린 밍띠의 일상 기록.",
 };
 
-export default function DailyPage() {
-  const posts = getAllPosts("daily");
+export default async function DailyPage() {
+  const localPosts = getAllPosts("daily");
+  const r2Posts = (await getPublishedR2Posts()).filter((post) => post.kind === "daily");
+  const posts = [...r2Posts, ...localPosts.filter((post) => !r2Posts.some((r2) => r2.slug === post.slug))]
+    .sort((a, b) => b.date.localeCompare(a.date));
 
   return (
     <main>
