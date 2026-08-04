@@ -1,9 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { formatPostDate, type Post } from "@/lib/posts";
+import { type Post } from "@/lib/posts";
 
 const PAGE_SIZE = 10;
+
+function compactDate(value: string) {
+  const [year, month, day] = value.split("-");
+  if (!year || !month || !day) return value;
+  return `${year.slice(-2)}/${Number(month)}/${Number(day)}`;
+}
 
 export function StudioPublicList({ posts }: { posts: Post[] }) {
   const [page, setPage] = useState(1);
@@ -18,7 +24,7 @@ export function StudioPublicList({ posts }: { posts: Post[] }) {
             <div className="studio-post-summary">
               <span>{post.kind === "coding" ? "공부" : "일상"}</span>
               <h3>{post.title}</h3>
-              <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+              <time dateTime={post.date}>{compactDate(post.date)}</time>
             </div>
             <div className="studio-post-actions">
               <a href={`/posts/${post.slug}`} target="_blank" rel="noreferrer">글 보기</a>
