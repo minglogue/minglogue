@@ -110,6 +110,24 @@ function escapeYaml(value: string) {
   return value.replaceAll("\\", "\\\\").replaceAll('"', '\\"');
 }
 
+function parsePastedMarkdown(raw: string) {
+  if (!raw.trimStart().startsWith("---")) return null;
+  const normalized = raw.replace(/^\uFEFF/, "").replaceAll("\r\n", "\n");
+  const match = normalized.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+  if (!match) return null;
+
+  const fields: Record<string, string> = {};
+  for (const line of match[1].split("\n")) {
+    const separator = line.indexOf(":");
+    if (separator < 0) continue;
+    const key = line.slice(0, separator).trim();
+    const value = line.slice(separator + 1).trim().replace(/^['"]|['"]$/g, "");
+    if (key) fields[key] = value;
+  }
+
+  return { fields, body: match[2].trimStart() };
+}
+
 function today() {
   return new Date().toISOString().slice(0, 10);
 }
@@ -487,7 +505,28 @@ ${body}
           </div>
           <div className="studio-field">
             <label htmlFor="studio-body">본문</label>
-            <textarea ref={bodyField} id="studio-body" value={body} onChange={(event) => setBody(event.target.value)} />
+            <textarea
+              ref={bodyField}
+              id="studio-body"
+              value={body}
+              onChange={(event) => setBody(event.target.value)}
+              onPaste={(event) => {
+                const parsed = parsePastedMarkdown(event.clipboardData.getData("text/plain"));
+                if (!parsed) return;
+                event.preventDefault();
+                const { fields, body: pastedBody } = parsed;
+                if (fields.title) setTitle(fields.title);
+                if (fields.slug) setSlug(fields.slug);
+                if (fields.excerpt !== undefined) setExcerpt(fields.excerpt);
+                if (fields.date) setDate(fields.date);
+                if (fields.category) setCategory(fields.category);
+                if (fields.kind === "coding" || fields.kind === "daily" || fields.kind === "portfolio" || fields.kind === "pudding") {
+                  setKind(fields.kind);
+                }
+                setBody(pastedBody);
+                setMessage("전체 Markdown에서 메타데이터와 본문을 자동으로 나눴어요.");
+              }}
+            />
             <button
               className="studio-template-button"
               type="button"
