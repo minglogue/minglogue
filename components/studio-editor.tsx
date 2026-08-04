@@ -595,7 +595,7 @@ ${body}
           <p className="studio-publish-note">
             <strong>{status === "published" ? "공개 글" : "초안"}</strong>
             {status === "published"
-              ? "으로 R2에 저장됩니다. 홈페이지 연결 전까지 기존 공개 글은 그대로 유지됩니다."
+              ? "으로 R2에 저장되고 홈페이지에 공개됩니다."
               : "은 로그인한 밍띠만 스튜디오에서 불러올 수 있습니다."}
           </p>
         </section>
