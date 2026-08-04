@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 
 type PostKind = "coding" | "daily" | "portfolio" | "pudding";
 type PostStatus = "drafts" | "published";
@@ -330,7 +333,7 @@ ${body}
     setMessage(`‘${post.title}’을 R2에서 불러왔어요.`);
   }
 
-  async function saveToCloud() {
+  async function saveToCloud(targetStatus: PostStatus = status) {
     if (!title.trim() || !body.trim()) {
       setMessage("제목과 본문을 먼저 작성해주세요.");
       return;
@@ -350,7 +353,7 @@ ${body}
           method: "PUT",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
-            title, slug: safeSlug, kind, status, category, excerpt, tags, body, date, markdown,
+            title, slug: safeSlug, kind, status: targetStatus, category, excerpt, tags, body, date, markdown,
             updatedAt: new Date().toISOString(),
           }),
         },
@@ -360,7 +363,8 @@ ${body}
       setSlug(safeSlug);
       setImages([]);
       await refreshCloudPosts();
-      setMessage(status === "published" ? "R2에 저장하고 공개 상태로 바꿨어요." : "R2에 비공개 초안으로 저장했어요.");
+      setStatus(targetStatus);
+      setMessage(targetStatus === "published" ? "R2에 저장하고 게시했어요." : "R2에 초안으로 저장했어요.");
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "R2에 저장하지 못했어요.");
     } finally {
@@ -576,8 +580,11 @@ ${body}
             )}
           </div>
           <div className="studio-actions">
-            <button type="button" disabled={isSaving} onClick={() => void saveToCloud()}>
-              {isSaving ? "R2에 저장 중…" : status === "published" ? "저장하고 게시" : "R2에 초안 저장"}
+            <button type="button" disabled={isSaving} onClick={() => void saveToCloud("drafts")}>
+              {isSaving ? "저장 중…" : "초안 저장"}
+            </button>
+            <button type="button" disabled={isSaving} onClick={() => void saveToCloud("published")}>
+              {isSaving ? "게시 준비 중…" : "게시하기"}
             </button>
             <button type="button" onClick={copyMarkdown}>Markdown 복사</button>
             <button className="secondary-button" type="button" onClick={downloadMarkdown}>.md 내려받기</button>
@@ -594,8 +601,14 @@ ${body}
         </section>
 
         <aside className="studio-preview">
-          <p className="panel-label">MARKDOWN PREVIEW</p>
-          <pre>{markdown}</pre>
+          <p className="panel-label">LIVE PREVIEW</p>
+          <article className="markdown-body studio-live-preview">
+            <h1>{title || "새 글 제목"}</h1>
+            {excerpt && <p className="post-page-excerpt">{excerpt}</p>}
+            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+              {body}
+            </ReactMarkdown>
+          </article>
         </aside>
       </div>
     </div>
