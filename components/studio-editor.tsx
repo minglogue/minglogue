@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-type PostKind = "coding" | "daily";
+type PostKind = "coding" | "daily" | "portfolio" | "pudding";
 type PostStatus = "drafts" | "published";
 
 type StudioDraft = {
@@ -29,7 +29,72 @@ type CompressedImage = {
 };
 
 const STORAGE_KEY = "minglogue-studio-draft-v2";
-const INITIAL_BODY = "# 오늘 배운 것\n\n여기에 내용을 적어보세요.";
+const TEMPLATES: Record<PostKind, string> = {
+  coding: `# 궁금했던 것
+
+무엇이 궁금했는지 적어보세요.
+
+## 알게 된 것
+
+찾아보고 이해한 내용을 적어보세요.
+
+## 직접 해본 것
+
+코드나 실행 결과를 적어보세요.
+
+## 다음에 볼 것
+
+- 다음 질문`,
+  daily: `# 오늘의 장면
+
+오늘 기억하고 싶은 일을 적어보세요.
+
+## 들었던 생각
+
+그때의 생각이나 감정을 적어보세요.
+
+## 남겨둘 것
+
+- 내일의 나에게`,
+  portfolio: `## 프로젝트 요약
+
+### 문제
+
+어떤 문제를 발견했는지 적어보세요.
+
+### 해결
+
+어떻게 접근하고 해결했는지 적어보세요.
+
+### 결과
+
+무엇이 달라졌는지 적어보세요.
+
+## 핵심 결과
+
+### 핵심 기능 | 한 문장 설명
+
+구체적인 결과를 적어보세요.
+
+## 만든 과정
+
+### OBSERVE | 관찰
+
+처음 관찰한 상황을 적어보세요.
+
+### BUILD | 구현
+
+만든 과정을 적어보세요.
+
+# 배운 점
+
+프로젝트를 통해 배운 것을 적어보세요.`,
+  pudding: `사진을 먼저 선택하고 ‘본문에 넣기’를 눌러주세요.
+
+오늘의 푸딩이는 어땠는지 짧게 적어보세요.`,
+};
+
+const INITIAL_BODY = TEMPLATES.coding;
 
 function slugify(value: string) {
   return value
@@ -128,6 +193,36 @@ export function StudioEditor() {
       ? `tags:\n${tagList.map((tag) => `  - "${escapeYaml(tag)}"`).join("\n")}\n`
       : "";
 
+    if (kind === "pudding") {
+      return `---
+title: "${escapeYaml(title) || safeSlug}"
+date: "${date}"
+${tagBlock}---
+
+${body}
+`;
+    }
+
+    if (kind === "portfolio") {
+      return `---
+title: "${escapeYaml(title) || "새 프로젝트"}"
+excerpt: "${escapeYaml(excerpt)}"
+period: "${date.slice(0, 7)} ~"
+role: "기획, 디자인, 구현"
+contribution: "100%"
+tools:
+  - 사용한 도구
+cover: ""
+featured: false
+projectUrl: ""
+githubUrl: ""
+users: ""
+---
+
+${body}
+`;
+    }
+
     return `---
 title: "${escapeYaml(title) || "새 글 제목"}"
 excerpt: "${escapeYaml(excerpt)}"
@@ -139,7 +234,7 @@ readTime: "${readMinutes}분"
 
 ${body}
 `;
-  }, [body, category, date, excerpt, kind, readMinutes, tagList, title]);
+  }, [body, category, date, excerpt, kind, readMinutes, safeSlug, tagList, title]);
 
   useEffect(() => {
     try {
@@ -148,7 +243,11 @@ ${body}
         const draft = JSON.parse(saved) as Partial<StudioDraft>;
         setTitle(draft.title ?? "");
         setSlug(draft.slug ?? "");
-        setKind(draft.kind === "daily" ? "daily" : "coding");
+        setKind(
+          draft.kind && ["coding", "daily", "portfolio", "pudding"].includes(draft.kind)
+            ? draft.kind
+            : "coding",
+        );
         setStatus(draft.status === "published" ? "published" : "drafts");
         setCategory(draft.category ?? "NEXT.JS");
         setExcerpt(draft.excerpt ?? "");
@@ -218,6 +317,28 @@ ${body}
     setMessage(`${image.name}을 내려받았어요. GitHub의 content/media에 올리면 됩니다.`);
   }
 
+  function changeKind(nextKind: PostKind) {
+    const canReplace = body === TEMPLATES[kind] || body.trim() === "" ||
+      window.confirm("현재 본문을 선택한 글 템플릿으로 바꿀까요?");
+
+    setKind(nextKind);
+    if (canReplace) setBody(TEMPLATES[nextKind]);
+
+    if (nextKind === "pudding") {
+      setCategory("PUDDING");
+      setTags((current) => current || "푸딩이");
+    } else if (nextKind === "portfolio") {
+      setCategory("PROJECT");
+    } else if (nextKind === "daily") {
+      setCategory("DAILY");
+    } else {
+      setCategory("NEXT.JS");
+    }
+
+    const kindName = { coding: "코딩", daily: "데일리", portfolio: "프로젝트", pudding: "푸딩이" }[nextKind];
+    setMessage(`${kindName} 템플릿을 준비했어요.`);
+  }
+
   async function copyMarkdown() {
     await navigator.clipboard.writeText(markdown);
     setMessage(`Markdown을 복사했어요. GitHub의 ${folderPath}에 붙여넣으면 됩니다.`);
@@ -276,9 +397,11 @@ ${body}
           <div className="studio-form-row studio-form-row-three">
             <div className="studio-field">
               <label htmlFor="studio-kind">글 종류</label>
-              <select id="studio-kind" value={kind} onChange={(event) => setKind(event.target.value as PostKind)}>
+              <select id="studio-kind" value={kind} onChange={(event) => changeKind(event.target.value as PostKind)}>
                 <option value="coding">궁금했던 것들</option>
                 <option value="daily">일상 이야기</option>
+                <option value="portfolio">프로젝트</option>
+                <option value="pudding">푸딩이 사진</option>
               </select>
             </div>
             <div className="studio-field">
@@ -315,6 +438,17 @@ ${body}
           <div className="studio-field">
             <label htmlFor="studio-body">본문</label>
             <textarea ref={bodyField} id="studio-body" value={body} onChange={(event) => setBody(event.target.value)} />
+            <button
+              className="studio-template-button"
+              type="button"
+              onClick={() => {
+                if (body === TEMPLATES[kind] || window.confirm("현재 본문을 기본 템플릿으로 다시 바꿀까요?")) {
+                  setBody(TEMPLATES[kind]);
+                }
+              }}
+            >
+              기본 템플릿 다시 불러오기
+            </button>
           </div>
           <div className="studio-field">
             <label htmlFor="studio-images">사진</label>

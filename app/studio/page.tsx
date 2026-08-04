@@ -4,7 +4,7 @@ import { StudioEditor } from "@/components/studio-editor";
 import { formatPostDate, getAllPosts } from "@/lib/posts";
 
 export const metadata: Metadata = {
-  title: "Studio",
+  title: "쓰는 공간",
   description: "Minglogue의 Markdown 글 작성 공간.",
   robots: { index: false, follow: false },
 };
@@ -17,8 +17,8 @@ export default function StudioPage() {
       <SiteHeader />
       <section className="studio-hero page-shell">
         <div>
-          <p className="eyebrow">MINGDDI&apos;S STUDIO</p>
-          <h1>어디서든 쓰고,<br /><span>내 기록으로 남기기.</span></h1>
+          <p className="eyebrow">밍띠의 스튜디오</p>
+          <h1 className="pixel-copy"><span>쓰는 공간</span></h1>
         </div>
         <p>
           휴대폰과 컴퓨터에서 블로그용 Markdown을 만들 수 있어요. 작성 중인
