@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type PostKind = "coding" | "daily";
 type PostStatus = "drafts" | "published";
@@ -15,6 +15,17 @@ type StudioDraft = {
   tags: string;
   body: string;
   date: string;
+};
+
+type CompressedImage = {
+  id: string;
+  name: string;
+  blob: Blob;
+  previewUrl: string;
+  originalBytes: number;
+  compressedBytes: number;
+  width: number;
+  height: number;
 };
 
 const STORAGE_KEY = "minglogue-studio-draft-v2";
@@ -37,6 +48,54 @@ function today() {
   return new Date().toISOString().slice(0, 10);
 }
 
+function imageBaseName(fileName: string) {
+  return slugify(fileName.replace(/\.[^.]+$/, "")) || `image-${Date.now()}`;
+}
+
+async function compressImage(file: File): Promise<CompressedImage> {
+  const bitmap = await createImageBitmap(file);
+  const scale = Math.min(1, 1600 / Math.max(bitmap.width, bitmap.height));
+  const width = Math.max(1, Math.round(bitmap.width * scale));
+  const height = Math.max(1, Math.round(bitmap.height * scale));
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const context = canvas.getContext("2d");
+
+  if (!context) {
+    bitmap.close();
+    throw new Error("이미지를 처리할 수 없는 브라우저입니다.");
+  }
+
+  context.drawImage(bitmap, 0, 0, width, height);
+  bitmap.close();
+
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob(
+      (result) => result ? resolve(result) : reject(new Error("이미지 압축에 실패했습니다.")),
+      "image/webp",
+      0.82,
+    );
+  });
+  const name = `${imageBaseName(file.name)}.webp`;
+
+  return {
+    id: crypto.randomUUID(),
+    name,
+    blob,
+    previewUrl: URL.createObjectURL(blob),
+    originalBytes: file.size,
+    compressedBytes: blob.size,
+    width,
+    height,
+  };
+}
+
+function formatBytes(bytes: number) {
+  if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))}KB`;
+  return `${(bytes / 1024 / 1024).toFixed(1)}MB`;
+}
+
 export function StudioEditor() {
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
@@ -49,6 +108,10 @@ export function StudioEditor() {
   const [date, setDate] = useState(today);
   const [message, setMessage] = useState("");
   const [isReady, setIsReady] = useState(false);
+  const [images, setImages] = useState<CompressedImage[]>([]);
+  const [isCompressing, setIsCompressing] = useState(false);
+  const bodyField = useRef<HTMLTextAreaElement>(null);
+  const imagesRef = useRef<CompressedImage[]>([]);
 
   const safeSlug = slugify(slug || title) || "new-post";
   const tagList = useMemo(
@@ -113,6 +176,47 @@ ${body}
 
     return () => window.clearTimeout(timer);
   }, [body, category, date, excerpt, isReady, kind, slug, status, tags, title]);
+
+  useEffect(() => {
+    imagesRef.current = images;
+  }, [images]);
+
+  useEffect(() => () => {
+    imagesRef.current.forEach((image) => URL.revokeObjectURL(image.previewUrl));
+  }, []);
+
+  async function addImages(files: FileList | null) {
+    if (!files?.length) return;
+    setIsCompressing(true);
+
+    try {
+      const compressed = await Promise.all(Array.from(files).map(compressImage));
+      setImages((current) => [...current, ...compressed]);
+      setMessage(`${compressed.length}장의 사진을 WebP로 압축했어요.`);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "사진을 압축하지 못했어요.");
+    } finally {
+      setIsCompressing(false);
+    }
+  }
+
+  function insertImage(image: CompressedImage) {
+    const field = bodyField.current;
+    const imageMarkdown = `\n\n![[${image.name}]]\n\n`;
+    const start = field?.selectionStart ?? body.length;
+    const end = field?.selectionEnd ?? start;
+    setBody(`${body.slice(0, start)}${imageMarkdown}${body.slice(end)}`);
+    setMessage(`${image.name}을 본문에 넣었어요.`);
+    window.setTimeout(() => field?.focus(), 0);
+  }
+
+  function downloadImage(image: CompressedImage) {
+    const link = document.createElement("a");
+    link.href = image.previewUrl;
+    link.download = image.name;
+    link.click();
+    setMessage(`${image.name}을 내려받았어요. GitHub의 content/media에 올리면 됩니다.`);
+  }
 
   async function copyMarkdown() {
     await navigator.clipboard.writeText(markdown);
@@ -210,7 +314,43 @@ ${body}
           </div>
           <div className="studio-field">
             <label htmlFor="studio-body">본문</label>
-            <textarea id="studio-body" value={body} onChange={(event) => setBody(event.target.value)} />
+            <textarea ref={bodyField} id="studio-body" value={body} onChange={(event) => setBody(event.target.value)} />
+          </div>
+          <div className="studio-field">
+            <label htmlFor="studio-images">사진</label>
+            <label className="studio-image-picker" htmlFor="studio-images">
+              <strong>{isCompressing ? "사진 압축 중…" : "사진 선택하기"}</strong>
+              <span>긴 변 1600px · WebP · 화질 82%로 자동 변환</span>
+            </label>
+            <input
+              className="studio-file-input"
+              id="studio-images"
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
+              multiple
+              disabled={isCompressing}
+              onChange={(event) => {
+                void addImages(event.target.files);
+                event.target.value = "";
+              }}
+            />
+            {images.length > 0 && (
+              <div className="studio-image-list">
+                {images.map((image) => (
+                  <article key={image.id}>
+                    <img src={image.previewUrl} alt="" />
+                    <div>
+                      <strong>{image.name}</strong>
+                      <small>
+                        {image.width}×{image.height} · {formatBytes(image.originalBytes)} → {formatBytes(image.compressedBytes)}
+                      </small>
+                    </div>
+                    <button type="button" onClick={() => insertImage(image)}>본문에 넣기</button>
+                    <button type="button" onClick={() => downloadImage(image)}>받기</button>
+                  </article>
+                ))}
+              </div>
+            )}
           </div>
           <div className="studio-actions">
             <button type="button" onClick={copyMarkdown}>Markdown 복사</button>
