@@ -64,6 +64,11 @@ async function listStudioPosts(env: Env) {
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
 }
 
+async function listPublishedPosts(env: Env) {
+  const posts = await listStudioPosts(env);
+  return posts.filter((post) => post.status === "published");
+}
+
 async function handleStudioApi(request: Request, env: Env, url: URL) {
   if (!canWriteStudio(request, env)) {
     return json({ error: "밍띠 계정으로 로그인해야 합니다." }, 401);
@@ -165,6 +170,22 @@ const worker = {
         console.error(JSON.stringify({ event: "studio_api_error", path: url.pathname, error: String(error) }));
         return json({ error: "저장소 요청을 처리하지 못했습니다." }, 500);
       }
+    }
+
+    if (url.pathname === "/api/public/posts" && request.method === "GET") {
+      try {
+        return json({ posts: await listPublishedPosts(env) }, 200);
+      } catch (error) {
+        console.error(JSON.stringify({ event: "public_posts_error", error: String(error) }));
+        return json({ error: "공개 글을 불러오지 못했습니다." }, 500);
+      }
+    }
+
+    const publicPostMatch = url.pathname.match(/^\/api\/public\/posts\/([^/]+)$/);
+    if (publicPostMatch && request.method === "GET") {
+      const slug = decodeURIComponent(publicPostMatch[1]);
+      const post = (await listPublishedPosts(env)).find((item) => item.slug === slug);
+      return post ? json({ post }) : json({ error: "글을 찾지 못했습니다." }, 404);
     }
 
     if (url.pathname.startsWith("/content/")) {
