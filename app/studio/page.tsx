@@ -18,12 +18,12 @@ export default function StudioPage() {
       <section className="studio-hero page-shell">
         <div>
           <p className="eyebrow">MINGDDI&apos;S STUDIO</p>
-          <h1>글을 쓰고,<br /><span>Markdown으로 챙겨가기.</span></h1>
+          <h1>어디서든 쓰고,<br /><span>내 기록으로 남기기.</span></h1>
         </div>
         <p>
-          이 페이지에서는 블로그용 Markdown을 만들 수 있어요. 아직 로그인
-          보호를 붙이기 전이라 GitHub 직접 저장 대신 복사와 파일 내려받기를
-          제공합니다.
+          휴대폰과 컴퓨터에서 블로그용 Markdown을 만들 수 있어요. 작성 중인
+          내용은 현재 기기에 자동 저장되고, 완성한 파일만 GitHub로 옮기면
+          됩니다.
         </p>
       </section>
       <section className="studio-content page-shell">
@@ -45,7 +45,7 @@ export default function StudioPage() {
                     글 보기
                   </a>
                   <a
-                    href={`https://github.com/minglogue/minglogue/edit/main/content/${post.kind}/${post.slug}.md`}
+                    href={`https://github.com/minglogue/minglogue/edit/main/content/${post.kind}/published/${post.slug}.md`}
                     target="_blank"
                     rel="noreferrer"
                   >
