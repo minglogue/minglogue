@@ -81,6 +81,15 @@ function resolveMedia(fileName: string) {
   return mediaPath ? mediaFiles[mediaPath] : null;
 }
 
+function resolveObsidianImages(content: string) {
+  return content.replace(/!\[\[([^\]]+)\]\]/g, (original, target: string) => {
+    const fileName = target.split("|", 1)[0].trim();
+    const src = resolveMedia(fileName);
+
+    return src ? `![${fileName}](${src})` : original;
+  });
+}
+
 function numberedHighlights(frontmatter: string) {
   return Array.from({ length: 8 }, (_, index) => index + 1)
     .map((number) => ({
@@ -222,7 +231,7 @@ function parseProject(path: string, raw: string): PortfolioProject {
     gallery: numberedGallery(frontmatter).length
       ? numberedGallery(frontmatter)
       : legacyGallery,
-    content: withoutPortfolioSections(body),
+    content: resolveObsidianImages(withoutPortfolioSections(body)),
   };
 }
 
