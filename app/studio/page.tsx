@@ -5,7 +5,7 @@ import { formatPostDate, getAllPosts } from "@/lib/posts";
 
 export const metadata: Metadata = {
   title: "쓰는 공간",
-  description: "Minglogue의 Markdown 글 작성 공간.",
+  description: "밍글로그의 글 작성 공간",
   robots: { index: false, follow: false },
 };
 

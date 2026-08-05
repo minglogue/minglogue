@@ -27,7 +27,7 @@ export default function Home() {
           <p className="eyebrow">DESIGNER BY DAY · DEVELOPER IN PROGRESS</p>
           <h1 className="pixel-copy">IT공부<span>•</span>일상기록</h1>
           <p className="hero-intro">
-            직접 해보고 실패한 모든 것을 기록합니다.
+            궁금한건 정말 참을 수 없어
           </p>
           <Link className="text-link" href="/coding">최근 기록 읽기 <span>→</span></Link>
         </div>
@@ -96,7 +96,7 @@ export default function Home() {
         <section className="badge-section" id="badges">
           <p className="panel-label">CERTIFICATIONS</p>
           <h2 className="pixel-copy">지금까지 취득한 것들</h2>
-          <p>클라우드와 개발 공부의 결과를 하나씩 모읍니다.</p>
+          <p>IT관련 공부할 것들과 공부한 것들을 모읍니다.</p>
           <CredlyBadge />
         </section>
         <section className="portfolio-section" id="portfolio">

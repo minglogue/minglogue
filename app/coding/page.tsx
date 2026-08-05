@@ -5,7 +5,7 @@ import { getAllPosts } from "@/lib/posts";
 
 export const metadata: Metadata = {
   title: "공부 기록",
-  description: "밍띠가 직접 배우고 부딪히며 남긴 개발 공부 기록.",
+  description: "직접 배우고 부딪히며 남긴 공부 기록",
 };
 
 export default function CodingPage() {
@@ -20,8 +20,7 @@ export default function CodingPage() {
           궁금했던 <span>것들</span>
         </h1>
         <p>
-          외워서 설명하기보다 직접 만들고 망가뜨리며 알게 된 것들을
-          기록합니다.
+          한 땀 한 땀 머릿 속에 넣는 용도입니다.
         </p>
       </section>
       <FilterablePostArchive heading="ALL STUDY LOGS" posts={posts} />

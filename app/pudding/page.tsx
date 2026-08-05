@@ -6,7 +6,7 @@ import { ZoomableImage } from "@/components/zoomable-image";
 
 export const metadata: Metadata = {
   title: "푸딩이의 최신 근황",
-  description: "날짜와 태그로 모아보는 반려햄스터 푸딩이의 사진 기록.",
+  description: "사진으로 모아보는 푸딩이 갤러리",
 };
 
 export default function PuddingPage() {
