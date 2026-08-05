@@ -1,13 +1,35 @@
 "use client";
 
-import { useEffect, useState, type ComponentPropsWithoutRef } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ComponentPropsWithoutRef,
+  type SyntheticEvent,
+} from "react";
 
 type ZoomableImageProps = ComponentPropsWithoutRef<"img"> & {
   src: string;
 };
 
-export function ZoomableImage({ src, alt = "", ...props }: ZoomableImageProps) {
+export function ZoomableImage({ src, alt = "", onLoad, ...props }: ZoomableImageProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isPortrait, setIsPortrait] = useState(false);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  const updateOrientation = (image: HTMLImageElement) => {
+    setIsPortrait(image.naturalHeight > image.naturalWidth * 1.1);
+  };
+
+  const handleLoad = (event: SyntheticEvent<HTMLImageElement>) => {
+    updateOrientation(event.currentTarget);
+    onLoad?.(event);
+  };
+
+  useEffect(() => {
+    const image = imageRef.current;
+    if (image?.complete) updateOrientation(image);
+  }, [src]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -28,12 +50,12 @@ export function ZoomableImage({ src, alt = "", ...props }: ZoomableImageProps) {
   return (
     <>
       <button
-        className="zoomable-image-trigger"
+        className={`zoomable-image-trigger${isPortrait ? " is-portrait" : ""}`}
         type="button"
         aria-label={`${alt || "사진"} 크게 보기`}
         onClick={() => setIsOpen(true)}
       >
-        <img src={src} alt={alt} {...props} />
+        <img ref={imageRef} src={src} alt={alt} onLoad={handleLoad} {...props} />
         <span aria-hidden="true">크게 보기</span>
       </button>
       {isOpen && (
