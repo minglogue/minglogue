@@ -19,7 +19,7 @@ export default function DailyPage() {
         <h1 className="pixel-copy">
           일상<span>이야기</span>
         </h1>
-        <p>공부와 디자인 사이에서 발견한 생각과 일상의 조각입니다.</p>
+        <p>일상의 조각들</p>
       </section>
       <FilterablePostArchive heading="ALL DAILY NOTES" posts={posts} />
       <SiteFooter />
