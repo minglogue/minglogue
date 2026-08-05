@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Arrow, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { CredlyBadge } from "@/components/credly-badge";
+import { PopularPosts } from "@/components/popular-posts";
+import { ViewCount } from "@/components/view-count";
 import { getAllPosts } from "@/lib/posts";
 import { getAllProjects } from "@/lib/portfolio";
 import { getPuddingPosts } from "@/lib/pudding";
@@ -17,6 +19,7 @@ export default function Home() {
   const projects = getAllProjects();
   const featuredProject = projects.find((project) => project.featured) ?? projects[0];
   const latestLogNumber = codingPosts[0]?.slug.match(/^(\d{4})/)?.[1] ?? "0000";
+  const popularSources = [...codingPosts, ...getAllPosts("daily")].map(({ slug, title, kind }) => ({ slug, title, kind }));
 
   return (
     <main>
@@ -53,7 +56,10 @@ export default function Home() {
                   <div className="post-category">{post.category}</div>
                   <h3><Link href={`/posts/${post.slug}`}>{post.title}</Link></h3>
                   <p>{post.excerpt}</p>
-                  <time dateTime={post.date}>{shortDate(post.date)}</time>
+                  <div className="post-row-meta">
+                    <time dateTime={post.date}>{shortDate(post.date)}</time>
+                    <ViewCount slug={post.slug} />
+                  </div>
                 </article>
               ))}
             </div>
@@ -70,7 +76,10 @@ export default function Home() {
                   <div className="post-category">{post.category}</div>
                   <h3><Link href={`/posts/${post.slug}`}>{post.title}</Link></h3>
                   <p>{post.excerpt}</p>
-                  <time dateTime={post.date}>{shortDate(post.date)}</time>
+                  <div className="post-row-meta">
+                    <time dateTime={post.date}>{shortDate(post.date)}</time>
+                    <ViewCount slug={post.slug} />
+                  </div>
                 </article>
               ))}
             </div>
@@ -91,6 +100,8 @@ export default function Home() {
           <Link href="/pudding">사진 보러가기 <span>→</span></Link>
         </aside>
       </section>
+
+      <PopularPosts posts={popularSources} />
 
       <section className="home-profile-grid page-shell">
         <section className="badge-section" id="badges">

@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { MarkdownImage } from "@/components/zoomable-image";
+import { PostViewTracker } from "@/components/view-count";
 import { formatPostDate, getPostBySlug } from "@/lib/posts";
 
 type PageProps = {
@@ -51,6 +52,7 @@ export default async function PostPage({ params }: PageProps) {
             <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             <span>{post.readTime} 읽기</span>
             <span>by MINGDDI</span>
+            <PostViewTracker slug={post.slug} />
           </div>
         </header>
         <div className="markdown-body">

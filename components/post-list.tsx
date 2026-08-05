@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { formatPostDate, type Post } from "@/lib/posts";
+import { ViewCount } from "@/components/view-count";
 
 export function PostList({
   posts,
@@ -42,7 +43,7 @@ export function PostList({
           </div>
           <div className="archive-meta">
             <time dateTime={post.date}>{formatPostDate(post.date)}</time>
-            <span>{post.readTime} 읽기</span>
+            <span>{post.readTime} 읽기 · <ViewCount slug={post.slug} /></span>
           </div>
         </article>
       ))}
