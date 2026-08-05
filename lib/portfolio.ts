@@ -55,7 +55,7 @@ const mediaFiles = import.meta.glob(
 function scalar(frontmatter: string, key: string) {
   return (
     frontmatter
-      .match(new RegExp(`^${key}:\\s*(.+)$`, "m"))?.[1]
+      .match(new RegExp(`^${key}:[ \\t]*(.*)$`, "m"))?.[1]
       ?.trim()
       .replace(/^["']|["']$/g, "") ?? ""
   );

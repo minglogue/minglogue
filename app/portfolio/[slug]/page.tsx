@@ -67,18 +67,20 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
               </div>
             )}
           </dl>
-          <div className="portfolio-detail-actions">
-            {project.projectUrl && (
-              <a href={project.projectUrl} target="_blank" rel="noreferrer">
-                사이트 방문 <Arrow />
-              </a>
-            )}
-            {project.githubUrl && (
-              <a href={project.githubUrl} target="_blank" rel="noreferrer">
-                GitHub <Arrow />
-              </a>
-            )}
-          </div>
+          {(project.projectUrl || project.githubUrl) && (
+            <div className="portfolio-detail-actions">
+              {project.projectUrl && (
+                <a href={project.projectUrl} target="_blank" rel="noreferrer">
+                  사이트 방문 <Arrow />
+                </a>
+              )}
+              {project.githubUrl && (
+                <a href={project.githubUrl} target="_blank" rel="noreferrer">
+                  GitHub <Arrow />
+                </a>
+              )}
+            </div>
+          )}
         </header>
 
         {project.cover && (
