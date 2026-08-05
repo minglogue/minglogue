@@ -11,7 +11,7 @@ featured: true
 projectUrl:
 githubUrl:
 users: 이 프로젝트를 사용하는 사람
-gallery1Image: customer-journey.png.png
+gallery1Image: customer-journey.png
 gallery1Alt: 고객 질문
 gallery2Image: seo-doctors-landingpage.png
 gallery2Alt: 고객 여정 초기 콘텐츠
