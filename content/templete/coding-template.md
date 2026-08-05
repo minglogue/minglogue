@@ -4,7 +4,7 @@ excerpt: 이 글에서 다룬 내용을 한 문장으로 요약합니다.
 date: "{{date:YYYY-MM-DD}}"
 category: NEXT.JS
 kind: coding
-readTime: 5분
+readTime:
 tags:
   - work
 ---

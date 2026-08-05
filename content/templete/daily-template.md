@@ -4,7 +4,7 @@ excerpt: 오늘 기록을 한 문장으로 요약합니다.
 date: "{{date:YYYY-MM-DD}}"
 category: DAILY
 kind: daily
-readTime: 3분
+readTime:
 tags:
   - "#work"
 ---
