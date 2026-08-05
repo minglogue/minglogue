@@ -33,7 +33,7 @@ export default function PortfolioPage() {
           <span>{projects.length}개의 프로젝트</span>
         </div>
         <div className="portfolio-grid">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <article className="portfolio-card" key={project.slug}>
               <Link
                 className="portfolio-card-cover"
@@ -43,12 +43,12 @@ export default function PortfolioPage() {
                 {project.cover ? (
                   <img src={project.cover} alt={`${project.title} 대표 화면`} />
                 ) : (
-                  <span>PROJECT {String(index + 1).padStart(2, "0")}</span>
+                  <span>PROJECT {String(project.sequence).padStart(2, "0")}</span>
                 )}
               </Link>
               <div className="portfolio-card-body">
                 <p className="portfolio-card-number">
-                  PROJECT {String(index + 1).padStart(2, "0")}
+                  PROJECT {String(project.sequence).padStart(2, "0")}
                 </p>
                 <h2>
                   <Link href={`/portfolio/${project.slug}`}>

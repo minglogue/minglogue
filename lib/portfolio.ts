@@ -1,4 +1,5 @@
 export type PortfolioProject = {
+  sequence: number;
   slug: string;
   title: string;
   excerpt: string;
@@ -192,6 +193,7 @@ function parseProject(path: string, raw: string): PortfolioProject {
   const process = bodyProcess(body);
 
   return {
+    sequence: Number(path.split("/").pop()?.match(/^(\d+)-/)?.[1] ?? 0),
     slug: path.split("/").pop()?.replace(/^\d+-/, "").replace(/\.md$/, "") ?? "",
     title: scalar(frontmatter, "title"),
     excerpt: scalar(frontmatter, "excerpt"),
