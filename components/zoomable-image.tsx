@@ -7,6 +7,7 @@ import {
   type ComponentPropsWithoutRef,
   type SyntheticEvent,
 } from "react";
+import { createPortal } from "react-dom";
 
 type ZoomableImageProps = ComponentPropsWithoutRef<"img"> & {
   src: string;
@@ -58,7 +59,7 @@ export function ZoomableImage({ src, alt = "", onLoad, ...props }: ZoomableImage
         <img ref={imageRef} src={src} alt={alt} onLoad={handleLoad} {...props} />
         <span aria-hidden="true">크게 보기</span>
       </button>
-      {isOpen && (
+      {isOpen && createPortal(
         <div
           className="image-lightbox"
           role="dialog"
@@ -75,7 +76,8 @@ export function ZoomableImage({ src, alt = "", onLoad, ...props }: ZoomableImage
             닫기 ×
           </button>
           <img src={src} alt={alt} onClick={(event) => event.stopPropagation()} />
-        </div>
+        </div>,
+        document.body,
       )}
     </>
   );
