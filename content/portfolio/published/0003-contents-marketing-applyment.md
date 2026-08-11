@@ -10,6 +10,7 @@ cover: customer-journey.png
 featured: true
 projectUrl:
 githubUrl:
+portfolioFile:
 users: 이 프로젝트를 사용하는 사람
 gallery1Image: customer-journey.png
 gallery1Alt: 고객 질문

@@ -13,6 +13,7 @@ cover: google-spread-sheets.png
 featured: true
 projectUrl:
 githubUrl:
+portfolioFile:
 users: 상담팀, 간호팀, 피부관리팀, 의료진
 ---
 ## 프로젝트 요약

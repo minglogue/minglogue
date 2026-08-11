@@ -11,6 +11,7 @@ cover: 대표이미지.png
 featured: false
 projectUrl: https://example.com
 githubUrl: https://github.com/example/project
+portfolioFile:
 users: 이 프로젝트를 사용하는 사람
 gallery1Image: 첫번째이미지.png
 gallery1Alt: 첫 번째 이미지에 보이는 내용을 설명합니다.

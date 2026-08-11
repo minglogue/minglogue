@@ -15,6 +15,7 @@ cover: blog-homepage-hero.png
 featured: false
 projectUrl: https://blog.minglogue.workers.dev
 githubUrl: https://github.com/minglogue/minglogue
+portfolioFile:
 users: 코딩 공부와 일상을 직접 기록하고 싶은 나
 gallery1Image: blog-property-section.png
 gallery1Alt: 옵시디언에서 프로젝트 속성을 작성한 화면

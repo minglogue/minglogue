@@ -89,7 +89,13 @@ function resolveMedia(fileName: string) {
 }
 
 function resolvePortfolioFile(fileName: string) {
-  const normalizedName = fileName.trim().replace(/^\.\//, "");
+  const normalizedName = fileName
+    .trim()
+    .replace(/^\.\//, "")
+    .replace(/^\[\[/, "")
+    .replace(/\]\]$/, "")
+    .split("|", 1)[0]
+    .trim();
   if (!normalizedName) return null;
 
   const filePath = Object.keys(portfolioFiles).find(
