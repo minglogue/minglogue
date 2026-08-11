@@ -67,7 +67,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
               </div>
             )}
           </dl>
-          {(project.projectUrl || project.githubUrl) && (
+          {(project.projectUrl || project.githubUrl || project.portfolioFile) && (
             <div className="portfolio-detail-actions">
               {project.projectUrl && (
                 <a href={project.projectUrl} target="_blank" rel="noreferrer">
@@ -77,6 +77,11 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
               {project.githubUrl && (
                 <a href={project.githubUrl} target="_blank" rel="noreferrer">
                   GitHub <Arrow />
+                </a>
+              )}
+              {project.portfolioFile && (
+                <a href={project.portfolioFile} download>
+                  PDF로 다운받기 ↓
                 </a>
               )}
             </div>

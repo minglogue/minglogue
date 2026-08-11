@@ -11,6 +11,7 @@ export type PortfolioProject = {
   featured: boolean;
   projectUrl: string;
   githubUrl: string;
+  portfolioFile: string | null;
   problem: string;
   solution: string;
   result: string;
@@ -52,6 +53,12 @@ const mediaFiles = import.meta.glob(
   },
 ) as Record<string, string>;
 
+const portfolioFiles = import.meta.glob("../content/media/*.pdf", {
+  eager: true,
+  import: "default",
+  query: "?url",
+}) as Record<string, string>;
+
 function scalar(frontmatter: string, key: string) {
   return (
     frontmatter
@@ -79,6 +86,17 @@ function resolveMedia(fileName: string) {
   );
 
   return mediaPath ? mediaFiles[mediaPath] : null;
+}
+
+function resolvePortfolioFile(fileName: string) {
+  const normalizedName = fileName.trim().replace(/^\.\//, "");
+  if (!normalizedName) return null;
+
+  const filePath = Object.keys(portfolioFiles).find(
+    (path) => path.split("/").pop() === normalizedName,
+  );
+
+  return filePath ? portfolioFiles[filePath] : null;
 }
 
 function resolveObsidianImages(content: string) {
@@ -214,6 +232,7 @@ function parseProject(path: string, raw: string): PortfolioProject {
     featured: scalar(frontmatter, "featured") === "true",
     projectUrl: scalar(frontmatter, "projectUrl"),
     githubUrl: scalar(frontmatter, "githubUrl"),
+    portfolioFile: resolvePortfolioFile(scalar(frontmatter, "portfolioFile")),
     problem: overview["문제"] || scalar(frontmatter, "problem"),
     solution: overview["해결"] || scalar(frontmatter, "solution"),
     result: overview["결과"] || scalar(frontmatter, "result"),

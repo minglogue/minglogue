@@ -15,6 +15,7 @@ type StudioDraft = {
   tags: string;
   body: string;
   date: string;
+  portfolioFile: string;
 };
 
 type CompressedImage = {
@@ -171,6 +172,7 @@ export function StudioEditor() {
   const [tags, setTags] = useState("");
   const [body, setBody] = useState(INITIAL_BODY);
   const [date, setDate] = useState(today);
+  const [portfolioFile, setPortfolioFile] = useState("");
   const [message, setMessage] = useState("");
   const [isReady, setIsReady] = useState(false);
   const [images, setImages] = useState<CompressedImage[]>([]);
@@ -216,6 +218,7 @@ cover: ""
 featured: false
 projectUrl: ""
 githubUrl: ""
+portfolioFile: "${escapeYaml(portfolioFile)}"
 users: ""
 ---
 
@@ -234,7 +237,7 @@ readTime: "${readMinutes}분"
 
 ${body}
 `;
-  }, [body, category, date, excerpt, kind, readMinutes, safeSlug, tagList, title]);
+  }, [body, category, date, excerpt, kind, portfolioFile, readMinutes, safeSlug, tagList, title]);
 
   useEffect(() => {
     try {
@@ -254,6 +257,7 @@ ${body}
         setTags(draft.tags ?? "");
         setBody(draft.body ?? INITIAL_BODY);
         setDate(draft.date ?? today());
+        setPortfolioFile(draft.portfolioFile ?? "");
         setMessage("이 기기에 저장된 초안을 불러왔어요.");
       }
     } catch {
@@ -267,14 +271,14 @@ ${body}
     if (!isReady) return;
 
     const draft: StudioDraft = {
-      title, slug, kind, status, category, excerpt, tags, body, date,
+      title, slug, kind, status, category, excerpt, tags, body, date, portfolioFile,
     };
     const timer = window.setTimeout(() => {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
     }, 350);
 
     return () => window.clearTimeout(timer);
-  }, [body, category, date, excerpt, isReady, kind, slug, status, tags, title]);
+  }, [body, category, date, excerpt, isReady, kind, portfolioFile, slug, status, tags, title]);
 
   useEffect(() => {
     imagesRef.current = images;
@@ -367,6 +371,7 @@ ${body}
     setTags("");
     setBody(INITIAL_BODY);
     setDate(today());
+    setPortfolioFile("");
     setMessage("새 글 준비가 끝났어요.");
   }
 
@@ -435,6 +440,31 @@ ${body}
             <label htmlFor="studio-tags">태그</label>
             <input id="studio-tags" value={tags} onChange={(event) => setTags(event.target.value)} placeholder="Next.js, 공부, 기록 (쉼표로 구분)" />
           </div>
+          {kind === "portfolio" && (
+            <div className="studio-field">
+              <label htmlFor="studio-portfolio-file">포트폴리오 PDF</label>
+              <label className="studio-image-picker" htmlFor="studio-portfolio-file">
+                <strong>{portfolioFile || "PDF 파일 선택하기"}</strong>
+                <span>선택한 PDF는 content/media에 함께 올려주세요</span>
+              </label>
+              <input
+                className="studio-file-input"
+                id="studio-portfolio-file"
+                type="file"
+                accept="application/pdf,.pdf"
+                onChange={(event) => {
+                  const file = event.target.files?.[0];
+                  setPortfolioFile(file?.name ?? "");
+                  setMessage(file ? `${file.name}을 프로젝트 속성에 연결했어요.` : "PDF 연결을 해제했어요.");
+                }}
+              />
+              {portfolioFile && (
+                <button className="studio-template-button" type="button" onClick={() => setPortfolioFile("")}>
+                  첨부 해제
+                </button>
+              )}
+            </div>
+          )}
           <div className="studio-field">
             <label htmlFor="studio-body">본문</label>
             <textarea ref={bodyField} id="studio-body" value={body} onChange={(event) => setBody(event.target.value)} />
