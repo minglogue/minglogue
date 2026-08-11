@@ -1,7 +1,7 @@
 ---
 title: 피부과 시술 진행·대기시간 관리 시트 고도화
 excerpt: 여러 팀에 흩어진 환자 진행 정보를 Google Sheets와 Apps Script로 연결해 대기와 누락을 빠르게 확인할 수 있도록 개선한 내부 도구 프로젝트
-period: 2026.02 ~ 진행중
+period: 2026.02 ~ 2026.08
 role: 현장 업무 분석, 시트 구조 설계, 기능 기획 및 구현, 사용자 피드백 반영
 contribution: 90%
 tools:
@@ -13,7 +13,7 @@ cover: google-spread-sheets.png
 featured: true
 projectUrl:
 githubUrl:
-portfolioFile:
+portfolioFile: "[[arrange-sheet-mingddijin.pdf]]"
 users: 상담팀, 간호팀, 피부관리팀, 의료진
 ---
 ## 프로젝트 요약
