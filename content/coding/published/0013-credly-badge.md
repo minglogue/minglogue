@@ -70,7 +70,7 @@ export function CredlyBadge() {
 ## 2. 해당 부분 이미지
 
 
->![[스크린샷 2026-08-07 오전 10.51.07.png]]
+>![[certified-badge-section.png]]
 
 ## 3. 이번에 배운 것
 
