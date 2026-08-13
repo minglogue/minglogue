@@ -1,7 +1,7 @@
 ---
 title: 구글/네이버 리뷰 답변을 탁월하게 해내는 GPT 만들기
 excerpt: 리뷰 답변을 자동화해보자
-period: 2026.04.26 ~ 2026.04.27
+period: 2026.04.20 ~ 2026.04.21
 role: 자동화
 contribution: 100%
 tools:
