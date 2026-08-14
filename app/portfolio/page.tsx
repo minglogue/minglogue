@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow, SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { ProjectViewCount } from "@/components/view-count";
 import { getAllProjects } from "@/lib/portfolio";
 
 export const metadata: Metadata = {
@@ -50,11 +51,14 @@ export default function PortfolioPage() {
                 <p className="portfolio-card-number">
                   PROJECT {String(project.sequence).padStart(2, "0")}
                 </p>
-                <h2>
-                  <Link href={`/portfolio/${project.slug}`}>
-                    {project.title}
-                  </Link>
-                </h2>
+                <div className="portfolio-card-title-row">
+                  <h2>
+                    <Link href={`/portfolio/${project.slug}`}>
+                      {project.title}
+                    </Link>
+                  </h2>
+                  <ProjectViewCount slug={project.slug} />
+                </div>
                 <p>{project.excerpt}</p>
                 <div className="portfolio-tools">
                   {project.tools.map((tool) => (

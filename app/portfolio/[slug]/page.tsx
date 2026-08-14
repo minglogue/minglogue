@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Arrow, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { MarkdownImage, ZoomableImage } from "@/components/zoomable-image";
+import { ProjectViewTracker } from "@/components/view-count";
 import { getProjectBySlug } from "@/lib/portfolio";
 
 type PageProps = {
@@ -47,6 +48,9 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
           <p className="eyebrow">PROJECT CASE STUDY</p>
           <h1 className="pixel-copy">{project.title}</h1>
           <p className="portfolio-detail-excerpt">{project.excerpt}</p>
+          <div className="portfolio-detail-view-count">
+            <ProjectViewTracker slug={project.slug} />
+          </div>
           <dl className="portfolio-facts">
             <div>
               <dt>PERIOD</dt>

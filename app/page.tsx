@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Arrow, SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { CredlyBadge } from "@/components/credly-badge";
 import { PopularPosts } from "@/components/popular-posts";
-import { ViewCount } from "@/components/view-count";
+import { ProjectViewCount, ViewCount } from "@/components/view-count";
 import { getAllPosts } from "@/lib/posts";
 import { getAllProjects } from "@/lib/portfolio";
 import { getPuddingPosts } from "@/lib/pudding";
@@ -126,6 +126,7 @@ export default function Home() {
               <span>
                 <strong>{featuredProject.title}</strong>
                 <small>{featuredProject.excerpt}</small>
+                <ProjectViewCount slug={featuredProject.slug} />
               </span>
             </Link>
           )}

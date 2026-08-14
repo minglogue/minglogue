@@ -919,6 +919,7 @@ a { color: inherit; text-decoration: none; }
 .portfolio-hero h1 span {
   background: linear-gradient(transparent 58%, var(--yellow) 58%);
 }
+.home-featured-project .view-count { display: block; margin-top: 9px; }
 .portfolio-hero > p:last-child {
   max-width: 650px;
   margin: 0;
@@ -970,6 +971,15 @@ a { color: inherit; text-decoration: none; }
   font-size: 34px;
   line-height: 1.25;
 }
+.portfolio-card-title-row {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+}
+.portfolio-card-title-row h2 { min-width: 0; }
+.portfolio-card-title-row .view-count { flex-shrink: 0; }
 .portfolio-card-body > p:not(.portfolio-card-number) {
   margin: 0;
   color: var(--muted);
@@ -1013,6 +1023,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 19px;
   line-height: 1.7;
 }
+.portfolio-detail-view-count { margin-top: 14px; }
 .portfolio-facts {
   display: grid;
   grid-template-columns: .8fr .8fr 2fr 1.2fr;

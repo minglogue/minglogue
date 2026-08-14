@@ -7,6 +7,10 @@ const listeners = new Map<string, Set<(count: number) => void>>();
 const pendingSlugs = new Set<string>();
 let batchTimer: ReturnType<typeof setTimeout> | null = null;
 
+export function projectViewSlug(slug: string) {
+  return `project-${slug}`;
+}
+
 function publish(slug: string, count: number) {
   countCache.set(slug, count);
   listeners.get(slug)?.forEach((listener) => listener(count));
@@ -81,4 +85,12 @@ export function PostViewTracker({ slug }: { slug: string }) {
   }, [slug]);
 
   return <span className="view-count">조회 {count ?? "–"}</span>;
+}
+
+export function ProjectViewCount({ slug }: { slug: string }) {
+  return <ViewCount slug={projectViewSlug(slug)} />;
+}
+
+export function ProjectViewTracker({ slug }: { slug: string }) {
+  return <PostViewTracker slug={projectViewSlug(slug)} />;
 }
